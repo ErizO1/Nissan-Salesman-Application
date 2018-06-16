@@ -82,8 +82,8 @@ AgentesSchema.statics.buscar = function(busqueda, callback) {
 }
 
 // Ingresa un nuevo documento a la coleccion
-AgentesSchema.statics.crear = function(cliente, callback) {
-    return this.create(cliente, callback);
+AgentesSchema.statics.crear = function(agente, callback) {
+    return this.register(agente, agente.password , callback);
 }
 
 // Ingresa el criterio de búsqueda y obtiene los datos

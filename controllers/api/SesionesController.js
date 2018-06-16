@@ -12,7 +12,7 @@ SesionesController.prototype.login_post = (req, res) => {
             res.status(500).json(formatear(false, err))
         }
 
-        if (!user || !user.meta.active) {
+        if (!user || !user.meta.activo) {
             return res.status(404).json(formatear(false, "Usuario y/o Contraseña incorrecots"));
         }
 
