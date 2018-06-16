@@ -57,7 +57,6 @@ app.use(function(req, res, next){
 app.use('/api/Docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //Routing instances
-
 app.use("/api/Sesion", sesionesRouter);
 app.use("/api/Clientes", sessionManager.needLoginAPI, clientesRouter);
 app.use("/api/Agencias", sessionManager.needLoginAPI, agenciasRouter);
