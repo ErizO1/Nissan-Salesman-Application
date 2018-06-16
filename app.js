@@ -42,7 +42,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Initializing Local Strategy Authentication
-passport.use(new LocalStrategy(Agentes.authenticate()));
+console.log(Agentes.createStrategy());
+passport.use(Agentes.createStrategy());
 passport.serializeUser(Agentes.serializeUser());
 passport.deserializeUser(Agentes.deserializeUser());
 
@@ -58,9 +59,13 @@ app.use('/api/Docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //Routing instances
 
 app.use("/api/Sesion", sesionesRouter);
-app.use("/api/Clientes",sessionManager.needLoginAPI, clientesRouter);
-app.use("/api/Agencias", agenciasRouter);
-app.use("/api/Agentes", agentesRouter);
-app.use("/api/Modelo", modelosRouter);
+app.use("/api/Clientes", sessionManager.needLoginAPI, clientesRouter);
+app.use("/api/Agencias", sessionManager.needLoginAPI, agenciasRouter);
+app.use("/api/Agentes", sessionManager.needLoginAPI, agentesRouter);
+app.use("/api/Modelo",sessionManager.needLoginAPI,  modelosRouter);
+// app.use("/api/Clientes", clientesRouter);
+// app.use("/api/Agencias", agenciasRouter);
+// app.use("/api/Agentes", agentesRouter);
+// app.use("/api/Modelo", modelosRouter);
 
 module.exports = app;
