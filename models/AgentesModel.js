@@ -1,12 +1,13 @@
-var mongoose = require("mongoose");
-var roles = require("./RolesModel");
+let mongoose = require("mongoose");
+let passportLocalMongoose = require("passport-local-mongoose");
+let roles = require("./RolesModel");
 
-var AgentesSchema = new mongoose.Schema({
-    usuario: {
+let AgentesSchema = new mongoose.Schema({
+    username: {
         type: String,
         required: true
     },
-    contrasena: {
+    password: {
         type: String,
         required: true
     },
@@ -112,6 +113,8 @@ AgentesSchema.statics.eliminar = function(id, callback) {
     );
 }
 
-var Agentes = mongoose.model("Agentes", AgentesSchema);
+AgentesSchema.plugin(passportLocalMongoose);
+
+let Agentes = mongoose.model("Agentes", AgentesSchema);
 
 module.exports = Agentes;
