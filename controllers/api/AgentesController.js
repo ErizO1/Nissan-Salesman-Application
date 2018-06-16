@@ -10,6 +10,9 @@ AgentesController.prototype.index_get = () => {
             if (err) reject(err);
             resolve(clientes);
         });  
+    }, (err) => {
+        console.log(err);
+        reject(err);
     });
 }
 
@@ -20,6 +23,9 @@ AgentesController.prototype.id_get = (id) => {
             if (err) reject(err);
             resolve(clientes);
         });  
+    }, (err) => {
+        console.log(err);
+        reject(err);
     });
 }
 
@@ -30,6 +36,9 @@ AgentesController.prototype.buscar_post = (busqueda) => {
             if (err) reject(err);
             resolve(clientes);
         });
+    }, (err) => {
+        console.log(err);
+        reject(err);
     });
 }
 
@@ -41,6 +50,9 @@ AgentesController.prototype.index_post = (clienteNuevo) => {
             if (err) reject(err);
             resolve(cliente);
         });
+    }, (err) => {
+        console.log(err);
+        reject(err);
     });
 }
 
@@ -51,6 +63,9 @@ AgentesController.prototype.index_put = (id, clienteModificado) => {
             if (err) reject(err);
             resolve(clienteGuardado);
         });
+    }, (err) => {
+        console.log(err);
+        reject(err);
     });
 }
 
@@ -61,6 +76,9 @@ AgentesController.prototype.index_delete = (id) => {
             if (err) reject(err);
             resolve(clienteEliminado);
         });
+    }, (err) => {
+        console.log(err);
+        reject(err);
     });
 }
 
