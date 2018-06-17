@@ -39,7 +39,7 @@
         <div class="modal-dialog modal--form-size">
             <div class="modal-form modal-content">
                 <div class="modal-form__header">
-                    <h2 class="modal-form__title">Agregar modal-form__delete-description</h2>
+                    <h2 class="modal-form__title">Agregar modelo</h2>
                     <i class="modal-form__exit fas fa-times" id="modal-exit" data-dismiss="modal" aria-label="Close"></i>
                 </div>
                     <form action="" id="add-model-form">
@@ -62,15 +62,15 @@
                                 <input type="text" class="modal-form__input" name="anio">							  
                             </div>
                             <p class="modal-form__label modal-form__label--title">Dimensiones</p>
-                            <div class="modal-form__group modal-form__group--extra-small">
+                            <div class="modal-form__group modal-form__group--minium">
                                 <label for="" class="modal-form__label">Alto</label>
                                 <input type="text" class="modal-form__input" name="dimensiones[alto]">							  
                             </div>
-                            <div class="modal-form__group modal-form__group--extra-small">
+                            <div class="modal-form__group modal-form__group--minium">
                                 <label for="" class="modal-form__label">Largo</label>
                                 <input type="text" class="modal-form__input" name="dimensiones[largo]">							  
                             </div>
-                            <div class="modal-form__group modal-form__group--extra-small">
+                            <div class="modal-form__group modal-form__group--minium">
                                 <label for="" class="modal-form__label">Ancho</label>
                                 <input type="text" class="modal-form__input" name="dimensiones[ancho]">							  
                             </div>
@@ -116,26 +116,26 @@
                             <p class="modal-form__label modal-form__label--title">Imágenes</p>
                             <div class="modal-form__group modal-form__group--large">
                                 <label for="" class="modal-form__label">Banner</label>
-                                <input type="text" class="modal-form__input" name="photos[bannerImageURL]" placeholder="Link">							  
+                                <input type="text" class="modal-form__input" name="imagenes[banner]" placeholder="Link">							  
                             </div>
                             <div class="modal-form__group modal-form__group--large">
                                 <label for="" class="modal-form__label">Imágenes</label>
-                                <input type="text" class="modal-form__input" name="photos[imagesURL][0]" placeholder="Link">							  
+                                <input type="text" class="modal-form__input" name="imagenes[urls][0]" placeholder="Link">							  
                             </div>
                             <div class="modal-form__group modal-form__group--large">
-                                <input type="text" class="modal-form__input" name="photos[imagesURL][1]" placeholder="Link">							  
+                                <input type="text" class="modal-form__input" name="imagenes[urls][1]" placeholder="Link">							  
                             </div>
                             <div class="modal-form__group modal-form__group--large">
-                                <input type="text" class="modal-form__input" name="photos[imagesURL][2]" placeholder="Link">							  
+                                <input type="text" class="modal-form__input" name="imagenes[urls][2]" placeholder="Link">							  
                             </div>
                             <div class="modal-form__group modal-form__group--large">
-                                <input type="text" class="modal-form__input" name="photos[imagesURL][3]" placeholder="Link">							  
+                                <input type="text" class="modal-form__input" name="imagenes[urls][3]" placeholder="Link">							  
                             </div>
                             <div class="modal-form__group modal-form__group--large">
-                                <input type="text" class="modal-form__input" name="photos[imagesURL][4]" placeholder="Link">							  
+                                <input type="text" class="modal-form__input" name="imagenes[urls][4]" placeholder="Link">							  
                             </div>
                             <div class="modal-form__group modal-form__group--large">
-                                <input type="text" class="modal-form__input" name="photos[imagesURL][5]" placeholder="Link">							  
+                                <input type="text" class="modal-form__input" name="imagenes[urls][5]" placeholder="Link">							  
                             </div>
                     </form>
                 </div>
@@ -255,31 +255,55 @@
                 <div class="modal-form__body">
                     <div class="modal-form__group modal-form__group--small">
                         <label for="" class="modal-form__label">Nombre</label>
-                        <input type="text" class="modal-form__input" name="variante">
+                        <input type="text" class="modal-form__input" name="nombre" id"version-nombre">
                     </div>
                     <div class="modal-form__group modal-form__group--small">
                         <label for="" class="modal-form__label">Precio</label>
-                        <input type="text" class="modal-form__input" name="precio">								  
+                        <input type="text" class="modal-form__input" name="precio" id"version-precio">								  
+                    </div>
+                    <div class="modal-form__group modal-form__group--small">
+                        <label for="" class="modal-form__label">Aire acondicionado</label>
+                        <input type="checkbox" name="caracteristicas[aireAcondicionado]" value="true" id="version-aire">
+                    </div>
+                    <div class="modal-form__group modal-form__group--small">
+                        <label for="" class="modal-form__label">Pasajeros</label>
+                        <input type="text" class="modal-form__input" name="caracteristicas[pasajeros]" id="version-pasajeros">							  
+                    </div>
+                    <div class="modal-form__group modal-form__group--small">
+                        <label for="" class="modal-form__label">Capacidad del tanque</label>
+                        <input type="text" class="modal-form__input" name="caracteristicas[capacidadTanque]" id="version-tanque">							  
+                    </div>
+                    <div class="modal-form__group modal-form__group--small">
+                        <label for="" class="modal-form__label">Puertas</label>
+                        <input type="text" class="modal-form__input" name="caracteristicas[puertas]" id="version-puertas">							  
+                    </div>
+                    <div class="modal-form__group modal-form__group--small">
+                        <label for="" class="modal-form__label">Quemacocos</label>
+                        <input type="checkbox" name="caracteristicas[quemacocos]" value="true" id="version-quemacocos">
+                    </div>
+                    <div class="modal-form__group modal-form__group--small">
+                        <label for="" class="modal-form__label">Convertible</label>
+                        <input type="checkbox" name="caracteristicas[convertible]" value="true" id="version-convertible">
                     </div>
                     <div class="modal-form__group modal-form__group--small">
                         <label for="" class="modal-form__label">Rendimiento</label>
-                        <input type="text" class="modal-form__input" name="caracteristicas[rendimiento]">							  
+                        <input type="text" class="modal-form__input" name="caracteristicas[rendimiento]" id="version-rendimiento">							  
                     </div>
                     <div class="modal-form__group modal-form__group--small">
                         <label for="" class="modal-form__label">Potencia</label>
-                        <input type="text" class="modal-form__input" name="caracteristicas[potencia]">							  
+                        <input type="text" class="modal-form__input" name="caracteristicas[potencia]" id="version-potencia">							  
                     </div>
                     <div class="modal-form__group modal-form__group--small">
                         <label for="" class="modal-form__label">Torque</label>
-                        <input type="text" class="modal-form__input" name="caracteriticas[torque]">							  
+                        <input type="text" class="modal-form__input" name="caracteristicas[torque]" id="version-torque">							  
                     </div>
                     <div class="modal-form__group modal-form__group--small">
                         <label for="" class="modal-form__label">Transmisión</label>
-                        <input type="text" class="modal-form__input" name="caracteristicas[transmision]">							  
+                        <input type="text" class="modal-form__input" name="caracteristicas[transmision]" id="version-transmision">							  
                     </div>
                     <div class="modal-form__group modal-form__group--small">
                         <label for="" class="modal-form__label">Tracción</label>
-                        <input type="text" class="modal-form__input" name="caracteristicas[traccion]">							  
+                        <input type="text" class="modal-form__input" name="caracteristicas[traccion]" id="version-traccion">							  
                     </div>                     
                 </div>
             </form>

@@ -20,7 +20,7 @@ $(() => {
                 success: (result) => {
                     console.log(result);
                     localStorage.userData = JSON.stringify({
-                        user: result.data.username
+                        user: result.data
                     });
                     document.location.href = "/inicio";
                 },

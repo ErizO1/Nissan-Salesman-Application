@@ -2,11 +2,60 @@ var mongoose = require("mongoose");
 let validador = require("../controllers/modules/regexValidations");
 let VariantesModel = require("./VariantesModel");
 
+var ColoresProp = new mongoose.Schema({
+    nombre: {
+        type: String,
+        required: false
+    },
+    codigo: {
+        type: String,
+        required: false,
+        match: validador.color
+    }
+})
+
+var Colores = new mongoose.Schema({
+    interior: {
+        type: [ColoresProp],
+        default: []
+    },
+    exterior: {
+        type: [ColoresProp],
+        default: []
+    },
+})
+
+var Dimensiones = new mongoose.Schema({
+        alto: {
+            type: Number,
+            required: true
+        },
+        ancho: {
+            type: Number,
+            required: true
+        },
+        largo: {
+            type: Number,
+            required: true
+        }
+});
+
+var Imagenes = new mongoose.Schema({
+    urls: [{
+        type: String,
+        required: true
+    }],
+    banner: {
+        type: String,
+        required: true
+    }
+})
+
 var ModelosSchema = new mongoose.Schema({
     nombre: {
         type: String,
         required: true,
-        match: validador.nombre
+        match: validador.nombreModelo
     },
     anio: {
         type: Number,
@@ -22,57 +71,15 @@ var ModelosSchema = new mongoose.Schema({
         required: true
     },
     colores: {
-        type: {
-            interior: {
-                type: [{
-                    nombre: {
-                        type: String,
-                        required: false
-                    },
-                    codigo: {
-                        type: String,
-                        required: false,
-                        match: validador.color
-                    }
-                }],
-                default: []
-            },
-            exterior: {
-                type: [{
-                    nombre: {
-                        type: String,
-                        required: false
-                    },
-                    codigo: {
-                        type: String,
-                        required: false,
-                        match: validador.color
-                    }
-                }],
-                default: []
-            },
-        },
+        type: Colores,
         required: true
     },
     dimensiones: {
-        type: {
-            alto: Number,
-            ancho: Number,
-            largo: Number
-        },
+        type: Dimensiones,
         required: true
     },
     imagenes: {
-        type: {
-            urls: [{
-                type: String,
-                required: false
-            }],
-            banner: {
-                type: String,
-                required: true
-            }
-        },
+        type: Imagenes,
         required: true
     },
     variantes: [{
@@ -128,19 +135,19 @@ ModelosSchema.statics.crear = function(modelo, callback) {
 
 // Ingresa un nuevo documento a la coleccion
 ModelosSchema.statics.crearVarainte = function(id, variante, callback) {
-    VariantesModel.crear(variante, (err, varianteCreada) => {
-        this.findOne(
-            {
-                "_id": id,
-                "meta.activo": true
-            }, (err, modelo) => {
-                if (err) callback(err, modelo);
-                modelo.variantes.push(varianteCreada._id);
-                modelo.save();
-                callback(err, modelo);
-            }
-        );
-    })
+    this.findOne(
+        {
+            "_id": id,
+            "meta.activo": true
+        }, (err, modelo) => {
+            if (err) return callback(err);
+            if (!modelo) return callback("El modelo no se encuentra")
+            VariantesModel.crear(variante, (err, varianteCreada) => {
+                if (err) return callback(err);
+                modelo.variantes.push(varianteCreada);
+                modelo.save(callback);
+        });
+    });
 }
 
 // Ingresa el criterio de búsqueda y obtiene los datos

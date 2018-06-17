@@ -1,17 +1,13 @@
 var express = require("express");
 var router = express.Router();
 let Modelo = require("../models/ModelosModel");
+let sessionManager = require("../controllers/modules/sessionManager");
 
-router.get("/login",  function(req, res){
+router.get("/", sessionManager.needLogout, function(req, res){
     res.render("login");
 });
 
-router.get("/logout", function(req, res){
-    req.logout();
-    res.redirect("/login");
-});
-
-router.get("/inicio", function(req, res){
+router.get("/inicio", sessionManager.needLogin, function(req, res){
 
     Modelo.find({}, (err, foundModels) => {
         if(err){
@@ -23,7 +19,7 @@ router.get("/inicio", function(req, res){
 
 });
 
-router.get("/modelo/:nombre/:id", function(req, res){
+router.get("/modelo/:nombre/:id", sessionManager.needLogin, function(req, res){
     var id = req.params.id;
 
     Modelo.findOne({"_id": id, "meta.activo": true}, (err, foundModel) => {
@@ -37,60 +33,60 @@ router.get("/modelo/:nombre/:id", function(req, res){
 
 });
 
+router.get("/comparador", sessionManager.needLogin, function(req, res){
+    res.render("comparer");
+});
+
 //Global
-router.get("/gerentes", function(req, res){
+router.get("/gerentes", sessionManager.needLogin, function(req, res){
     res.render("global/gerentes");
 });
 
-router.get("/agencias", function(req, res){
+router.get("/agencias", sessionManager.needLogin, function(req, res){
     res.render("global/agencias");
 });
 
-router.get("/modelos", function(req, res){
+router.get("/modelos", sessionManager.needLogin, function(req, res){
     res.render("global/modelos");
 });
 
-router.get("/stock/global", function(req, res){
+router.get("/stock/global", sessionManager.needLogin, function(req, res){
     res.render("global/stock");
-});
-
-router.get("/", function(req, res){
-    res.redirect("/login");
 });
 
 //Gerente
 
-router.get("/empleados", function(req, res){
+router.get("/empleados", sessionManager.needLogin, function(req, res){
     res.render("gerente/empleados");
 });
 
-router.get("/stock/agencia", function(req, res){
+router.get("/stock/agencia", sessionManager.needLogin, function(req, res){
     res.render("gerente/stock");
 });
 
-router.get("/envios", function(req, res){
+router.get("/envios", sessionManager.needLogin, function(req, res){
     res.render("gerente/envios");
 });
 
-router.get("/ventas/local", function(req, res){
+router.get("/ventas/local", sessionManager.needLogin, function(req, res){
     res.render("gerente/ventas");
 });
 
 //Vendedor
 
-router.get("/clientes", function(req, res){
+router.get("/clientes", sessionManager.needLogin, function(req, res){
     res.render("vendedor/clientes");
 });
 
-router.get("/ventas/vendedor", function(req, res){
+router.get("/ventas/vendedor", sessionManager.needLogin, function(req, res){
     res.render("vendedor/ventas");
 });
 
-router.get("/stock/local", function(req, res){
+router.get("/stock/local", sessionManager.needLogin, function(req, res){
     res.render("vendedor/stock");
 });
 
-router.get("/compador", function(req, res){
+router.get("/compador", sessionManager.needLogin, function(req, res){
     res.render("comparer");
 });
 

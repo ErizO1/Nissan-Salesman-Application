@@ -1,8 +1,9 @@
 $(document).ready(function(){
 
     refreshAgencies();
-    fillSelectStates();
+    //fillSelectStates();
 
+    $("#agency-add").on('click', addAgency);
     $("#btn-add-agency").on('click', prepareFormToAdd);
     $("#btn-remove-agency").on('click', removeAgency);
     $("#filter-agency-state").on('change', fillSelectCities);
@@ -110,7 +111,7 @@ $(document).ready(function(){
     }
     
     function prepareFormToAdd(){
-        f
+        
     }
     
     function refreshAgencies(){
@@ -127,7 +128,7 @@ $(document).ready(function(){
     function addAgency(){
         
         var userForm = $("#agency-form"),
-            url = "/agency",
+            url = "/api/Agencias",
             data = {};
         
         userForm.find('[name]').each(function(index, value){
@@ -136,6 +137,12 @@ $(document).ready(function(){
 
             data[name] = value;
         });
+
+        var data = {
+            nombre: $("#version-nombre").val(),
+            estado: $("#version-precio").val(),
+            ciudad: $("#version-precio").val(),
+        };
         
         $.ajax({
             url: url,

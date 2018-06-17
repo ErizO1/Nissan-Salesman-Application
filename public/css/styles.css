@@ -22,6 +22,10 @@ body {
   transition: all .3s ease;
 }
 
+.modal-form__group--minium {
+  width: 23%;
+}
+
 .modal-form__label--title {
   color: #C70042;
   display: inline-block;
