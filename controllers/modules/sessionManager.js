@@ -5,7 +5,7 @@ let sessionManager = new Object();
 
 sessionManager.needLogin = (req, res, next) => {
     if (req.user != undefined) next();
-    else res.redirect("/login");
+    else res.redirect("/");
 }
 
 sessionManager.needLoginAPI = (req, res, next) => {
@@ -15,7 +15,7 @@ sessionManager.needLoginAPI = (req, res, next) => {
 
 sessionManager.needLogout = (req, res, next) => {
     if (req.user == undefined) next();
-    else res.redirect("/");
+    else res.redirect("/inicio");
 }
 
 sessionManager.needLogoutAPI = (req, res, next) => {

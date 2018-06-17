@@ -44,7 +44,7 @@ var ClienteSchema = new mongoose.Schema({
     },
     agente: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Agente",
+        ref: "Agentes",
         required: false
     },
     meta: {

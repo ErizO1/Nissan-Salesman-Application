@@ -15,12 +15,12 @@ let sessionManager = require("./controllers/modules/sessionManager");
 //seedDB();
 
 //Requiring route files
-let sesionesRouter = require("./routes/SesionesRouter");
-let clientesRouter = require("./routes/ClientesRouter");
-let agenciasRouter = require("./routes/AgenciasRouter");
-let agentesRouter = require("./routes/AgentesRouter");
-let modelosRouter = require("./routes/ModelosRouter");
-let comparadorExtRouter = require("./routes/ComapradorExtRouter");
+let sesionesRouter = require("./routes/api/SesionesRouter");
+let clientesRouter = require("./routes/api/ClientesRouter");
+let agenciasRouter = require("./routes/api/AgenciasRouter");
+let agentesRouter = require("./routes/api/AgentesRouter");
+let modelosRouter = require("./routes/api/ModelosRouter");
+let comparadorExtRouter = require("./routes/api/ComapradorExtRouter");
 
 //=======================App setup===============================
 

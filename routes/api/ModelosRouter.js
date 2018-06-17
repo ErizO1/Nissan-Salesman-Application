@@ -1,7 +1,7 @@
 let express = require("express");
-let formateador = require("../controllers/modules/responseFormatter");
-let ModelosController = require("../controllers/api/ModelosController");
-let VariantesController = require("../controllers/api/VariantesController");
+let formateador = require("../../controllers/modules/responseFormatter");
+let ModelosController = require("../../controllers/api/ModelosController");
+let VariantesController = require("../../controllers/api/VariantesController");
 
 var router = express.Router();
 var modelosController = new ModelosController();

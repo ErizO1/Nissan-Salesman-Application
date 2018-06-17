@@ -1,7 +1,7 @@
 let express = require("express");
-let formateador = require("../controllers/modules/responseFormatter");
-let SesionesController = require("../controllers/api/SesionesController");
-let SessionManager = require("../controllers/modules/sessionManager")
+let formateador = require("../../controllers/modules/responseFormatter");
+let SesionesController = require("../../controllers/api/SesionesController");
+let SessionManager = require("../../controllers/modules/sessionManager")
 
 var router = express.Router();
 var controller = new SesionesController();
