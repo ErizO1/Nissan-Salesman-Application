@@ -1,14 +1,17 @@
 var mongoose = require("mongoose");
+let validador = require("../controllers/modules/regexValidations");
 let VariantesModel = require("./VariantesModel");
 
 var ModelosSchema = new mongoose.Schema({
     nombre: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.nombre
     },
     anio: {
         type: Number,
-        required: true
+        required: true,
+        validate: validador.anio
     },
     descripcion: {
         type: String,
@@ -114,13 +117,6 @@ ModelosSchema.statics.obtenerComparadorExt = function(callback) {
             "caracteristicas.traccion" : true,
         }
     }).exec(callback);
-}
-
-// Ingresa el criterio de búsqueda y obtiene los datos
-ModelosSchema.statics.buscar = function(busqueda, callback) {
-    busqueda["meta.activo"] = true;
-    console.log(JSON.stringify(busqueda));
-    return this.find(busqueda, callback);
 }
 
 // Ingresa un nuevo documento a la coleccion

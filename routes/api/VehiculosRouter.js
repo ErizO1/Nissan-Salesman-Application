@@ -1,9 +1,9 @@
 let express = require("express");
-let formateador = require("../controllers/modules/responseFormatter");
-let AgentesController = require("../controllers/api/AgentesController");
+let formateador = require("../../controllers/modules/responseFormatter");
+let RouterController = require("../../controllers/api/RouterController");
 
 var router = express.Router();
-var controller = new AgentesController();
+var controller = new RouterController();
 
 router.get("/", (req, res) => {
     controller.index_get()
@@ -46,20 +46,6 @@ router.post("/", (req, res) => {
             res.status(500).json(formateador(false, err));
         })
     });
-    
-router.post("/buscar", (req, res) => {
-    controller.buscar_post(req.body)
-    .then(
-        (clientes) => {
-            res.status(200).json(formateador(true, clientes));
-        },
-        (err) => {
-            res.status(400).json(formateador(false, err));
-        })
-    .catch((err) => {
-        res.status(500).json(formateador(false, err));
-    })
-});
     
 router.put("/:id", (req, res) => {
     controller.index_put(req.params.id, req.body)

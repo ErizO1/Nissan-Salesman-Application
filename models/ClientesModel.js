@@ -1,37 +1,45 @@
 var mongoose = require("mongoose");
+var validador = require("../controllers/modules/regexValidations");
 
 var ClienteSchema = new mongoose.Schema({
     nombre: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.nombre
     },
     apellidoP: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.nombre
     },
     apellidoM: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.nombre
     },
     rfc: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.rfc
     },
     telefono: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.telefono
     },
     correo: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.correo
     },
     estado: {
         type: String,
-        required: true
+        required: true,
     },
     cp: {
         type: Number,
-        required: true
+        required: true,
+        validate: validador.cp
     },
     domicilio: {
         type: String,
@@ -44,7 +52,7 @@ var ClienteSchema = new mongoose.Schema({
     },
     agente: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Agente",
+        ref: "Agentes",
         required: false
     },
     meta: {
@@ -62,13 +70,6 @@ ClienteSchema.statics.obtener = function(callback) {
 // Obtiene todos los clientes
 ClienteSchema.statics.obtenerPorID = function(id, callback) {
     return this.find({_id: id, "meta.activo": true}).populate("agencia").populate("agente").exec(callback);
-}
-
-// Ingresa el criterio de búsqueda y obtiene los datos
-ClienteSchema.statics.buscar = function(busqueda, callback) {
-    busqueda["meta.activo"] = true;
-    console.log(JSON.stringify(busqueda));
-    return this.find(busqueda, callback);
 }
 
 // Ingresa un nuevo documento a la coleccion
