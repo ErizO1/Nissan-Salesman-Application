@@ -1,7 +1,7 @@
 'use strict'
 let formatear = require("./responseFormatter");
 
-let sessionManager = new Object();
+function sessionManager() { };
 
 sessionManager.needLogin = (req, res, next) => {
     if (req.user != undefined) next();

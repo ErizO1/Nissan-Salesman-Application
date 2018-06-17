@@ -6,12 +6,12 @@ var ModelosSchema = new mongoose.Schema({
     nombre: {
         type: String,
         required: true,
-        validate: validador.nombre
+        match: validador.nombre
     },
     anio: {
         type: Number,
         required: true,
-        validate: validador.anio
+        match: validador.anio
     },
     descripcion: {
         type: String,
@@ -31,7 +31,8 @@ var ModelosSchema = new mongoose.Schema({
                     },
                     codigo: {
                         type: String,
-                        required: false
+                        required: false,
+                        match: validador.color
                     }
                 }],
                 default: []
@@ -44,7 +45,8 @@ var ModelosSchema = new mongoose.Schema({
                     },
                     codigo: {
                         type: String,
-                        required: false
+                        required: false,
+                        match: validador.color
                     }
                 }],
                 default: []
@@ -149,7 +151,7 @@ ModelosSchema.statics.guardar = function(id, modelo, callback) {
             "meta.activo": true
         },
         modelo,
-        { new: true },
+        { new: true, runValidators: true },
         callback
     );
 }

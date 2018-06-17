@@ -5,41 +5,41 @@ var ClienteSchema = new mongoose.Schema({
     nombre: {
         type: String,
         required: true,
-        validate: validador.nombre
+        match: validador.nombre
     },
     apellidoP: {
         type: String,
         required: true,
-        validate: validador.nombre
+        match: validador.nombre
     },
     apellidoM: {
         type: String,
         required: true,
-        validate: validador.nombre
+        match: validador.nombre
     },
     rfc: {
         type: String,
         required: true,
-        validate: validador.rfc
+        match: validador.rfc
     },
     telefono: {
         type: String,
         required: true,
-        validate: validador.telefono
+        match: validador.telefono
     },
     correo: {
         type: String,
         required: true,
-        validate: validador.correo
+        match: validador.correo
     },
     estado: {
         type: String,
         required: true,
     },
     cp: {
-        type: Number,
+        type: String,
         required: true,
-        validate: validador.cp
+        match: validador.cp
     },
     domicilio: {
         type: String,
@@ -86,7 +86,7 @@ ClienteSchema.statics.guardar = function(id, cliente, callback) {
             "meta.activo": true
         },
         cliente,
-        { new: true },
+        { new: true, runValidators: true },
         callback
     );
 }

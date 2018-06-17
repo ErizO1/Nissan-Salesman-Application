@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 let Modelo = require("../models/ModelosModel");
 
-router.get("/login", function(req, res){
+router.get("/login",  function(req, res){
     res.render("login");
 });
 
