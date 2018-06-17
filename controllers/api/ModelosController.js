@@ -1,6 +1,7 @@
 'use strict'
 
 let ModelosModel = require("../../models/ModelosModel");
+let VariantesModel = require("../../models/VehiculosModel");
 function ModelosController() {}
 
 // GET /
@@ -75,6 +76,60 @@ ModelosController.prototype.index_delete = (id) => {
         ModelosModel.eliminar(id, (err, clienteEliminado) => {
             if (err) reject(err);
             resolve(clienteEliminado);
+        });
+    }, (err) => {
+        console.log(err);
+        reject(err);
+    });
+}
+
+// Variantes
+// GET /Variantes/:id
+ModelosController.prototype.variantes_get = (id) => {
+    return new Promise((resolve, reject) => {
+        VariantesModel.obtenerPorID(id, (err, clientes) => { 
+            if (err) reject(err);
+            resolve(clientes);
+        });  
+    }, (err) => {
+        console.log(err);
+        reject(err);
+    });
+}
+
+// POST /:id/Variantes
+ModelosController.prototype.variantes_post = (id, variante) => {
+    return new Promise((resolve, reject) => {
+        ModelosModel.crearVarainte(id, variante, (err, clientes) => { 
+            if (err) reject(err);
+            resolve(clientes);
+        });  
+    }, (err) => {
+        console.log(err);
+        reject(err);
+    });
+}
+
+// PUT /Variantes/:id
+ModelosController.prototype.variantes_put = (id) => {
+    return new Promise((resolve, reject) => {
+        VariantesModel.guardar(id, (err, clientes) => { 
+            if (err) reject(err);
+            resolve(clientes);
+        });
+    }, (err) => {
+        console.log(err);
+        reject(err);
+    });
+}
+
+// DELETE /Variantes/:id
+ModelosController.prototype.variantes_delete = (id) => {
+    console.log(ModelosModel);
+    return new Promise((resolve, reject) => {
+        VariantesModel.eliminar(id, (err, cliente) => {
+            if (err) reject(err);
+            resolve(cliente);
         });
     }, (err) => {
         console.log(err);

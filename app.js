@@ -21,6 +21,7 @@ let clientesRouter = require("./routes/ClientesRouter");
 let agenciasRouter = require("./routes/AgenciasRouter");
 let agentesRouter = require("./routes/AgentesRouter");
 let modelosRouter = require("./routes/ModelosRouter");
+let comparadorExtRouter = require("./routes/ComapradorExtRouter");
 
 //=======================App setup===============================
 
@@ -58,12 +59,13 @@ app.use(function(req, res, next){
 app.use('/api/Docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //Routing instances
-
 app.use("/api/Sesion", sesionesRouter);
 app.use("/api/Clientes", sessionManager.needLoginAPI, clientesRouter);
 app.use("/api/Agencias", sessionManager.needLoginAPI, agenciasRouter);
 app.use("/api/Agentes", sessionManager.needLoginAPI, agentesRouter);
-app.use("/api/Modelo",sessionManager.needLoginAPI,  modelosRouter);
+app.use("/api/Modelos", sessionManager.needLoginAPI, modelosRouter);
+app.use("/api/ComparadorExt", comparadorExtRouter);
+// app.use("/api/Modelos/Variantes", sessionManager.needLoginAPI, variantesRouter);
 // app.use("/api/Clientes", clientesRouter);
 // app.use("/api/Agencias", agenciasRouter);
 // app.use("/api/Agentes", agentesRouter);
