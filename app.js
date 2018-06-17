@@ -22,6 +22,7 @@ let agenciasRouter = require("./routes/AgenciasRouter");
 let agentesRouter = require("./routes/AgentesRouter");
 let modelosRouter = require("./routes/ModelosRouter");
 let comparadorExtRouter = require("./routes/ComapradorExtRouter");
+let vistasRouter = require("./routes/index");
 
 //=======================App setup===============================
 
@@ -59,6 +60,7 @@ app.use(function(req, res, next){
 app.use('/api/Docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //Routing instances
+app.use(vistasRouter);
 app.use("/api/Sesion", sesionesRouter);
 app.use("/api/Clientes", sessionManager.needLoginAPI, clientesRouter);
 app.use("/api/Agencias", sessionManager.needLoginAPI, agenciasRouter);

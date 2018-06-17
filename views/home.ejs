@@ -1,3 +1,5 @@
+<% include ./partials/header %>
+
 <section class="main-home">
     <div class="main-home__container container d-flex">
         <aside class="filter col-md-4 col-lg-3 d-none d-md-block" id="filter">
@@ -34,61 +36,6 @@
                     </ul>
                 </ul>
             </ul>
-            <div class="range">
-                <div class="range__item">
-                    <p class="filter__title filter__title--control">Price</p>
-                    <div class="range__background">
-                        <input class="range__input" type="range">
-                    </div>
-                    <div class="range__interval">
-                        <p class="range__amount range__amount--min">$100,000</p>
-                        <p class="range__amount range__amount--max">$300,000</p>
-                    </div>
-                </div>
-                <div class="range__item">
-                    <p class="filter__title filter__title--control">Passengers</p>
-                    <div class="range__background">
-                        <input class="range__input" type="range">
-                    </div>
-                    <div class="range__interval">
-                        <p class="range__amount range__amount--min">2</p>
-                        <p class="range__amount range__amount--max">7</p>
-                    </div>
-                </div>
-                <div class="range__item">
-                    <p class="filter__title filter__title--control">Tank</p>
-                    <div class="range__background">
-                        <input class="range__input" type="range">
-                    </div>
-                    <div class="range__interval">
-                        <p class="range__amount range__amount--min">15</p>
-                        <p class="range__amount range__amount--max">30</p>
-                    </div>
-                </div>
-            </div>
-            <div class="checklist">
-                <p class="filter__title filter__title--control">Features</p>
-                <div class="checklist__item">
-                    <p class="checklist__title">GPS</p>
-                    <input class="checklist__checkbox" type="checkbox">
-                </div>
-                <div class="checklist__item">
-                    <p class="checklist__title">Elevator</p>
-                    <input class="checklist__checkbox" type="checkbox">
-                </div>
-                <div class="checklist__item">
-                    <p class="checklist__title">Hottub</p>
-                    <input class="checklist__checkbox" type="checkbox">
-                </div>
-                <div class="checklist__item">
-                    <p class="checklist__title">Plasma 4K</p>
-                    <input class="checklist__checkbox" type="checkbox">
-                </div>
-                <div class="checklist__item">
-                    <p class="checklist__title">Chocotorros</p>
-                    <input class="checklist__checkbox" type="checkbox">
-                </div>
-            </div>
         </aside>
         <section class="cars col-sm-12 col-md-8 col-lg-9 d-md-block" id="cars-page">
             <div class="cars__search">
@@ -100,9 +47,9 @@
                 <% models.forEach(function(model) { %>
                     <div class="car__container col-xs-12 col-sm-6 col-md-6 col-lg-4">
                         <div class="car" data-id="<%= model._id %>" data-toggle="modal" data-target=".bd-example-modal-lg">
-                            <img class="car__image" src="<%= model.photos.imagesURL[0] %>" alt="">
+                            <img class="car__image" src="<%= model.imagenes.urls[0] %>" alt="">
                             <div class="car__info">
-                                <p class="car__name"><%= model.modelo %></p>
+                                <p class="car__name"><%= model.nombre %></p>
                             </div>
                         </div>
                     </div>
@@ -172,10 +119,13 @@
                         <p class="modal-feature__name">Kilómetros por gota</p>
                     </div>
                 </div>
-                <a href="/cars/details/" id="btn-see-more" class="modal__see-more mt-5 mx-auto">Detalles</a>
+                <a href="/modelo/" id="btn-see-more" class="modal__see-more mt-5 mx-auto">Detalles</a>
             </div>
         </div>
       </div>
     </div>
 
 </section>
+<script src="/js/Script.js"></script>
+<script src="/js/ajax/catalog.js"></script>
+<% include ./partials/footer %>

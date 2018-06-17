@@ -12,7 +12,7 @@ $(document).ready(function(){
     function loadModalInfo(){
         
         var id = $(this).attr("data-id"),
-            url = "/cars/" + id;
+            url = "/api/Modelos/" + id;
 
             console.log(url);
 
@@ -20,15 +20,19 @@ $(document).ready(function(){
             url: url,
             method: "GET",
             dataType: "json",
-            success: function(model){
+            success: function(modelData){
 
-                var images = model.photos.imagesURL;
+                var model = modelData.data[0];
+
+                console.log(model);
+
+                var images = model.imagenes.urls;
                 var galleryImages = $(".modal__thumbnail");
 
                 console.log(model);
                 
                 //Setting main current image
-                $("#modal-image").attr("src", images[5]);
+                $("#modal-image").attr("src", images[0]);
 
                 //Setting images for each of the thumbs
                 $.each(galleryImages, function(key, value) {
@@ -36,14 +40,17 @@ $(document).ready(function(){
                 });
 
                 //Modal info
-                $("#modal-title").text(model.modelo);
+                $("#modal-title").text(model.nombre);
                 $("#modal-description").text(model.descripcion);
+                /*
                 $("#feature-traccion").text(model.variantes[0].caracteristicas.traccion);
                 $("#feature-transmision").text(model.variantes[0].caracteristicas.transmision);
                 $("#feature-potencia").text(model.variantes[0].caracteristicas.potencia);
-                $("#feature-rendimiento").text(model.variantes[0].caracteristicas.rendimiento);
+                $("#feature-rendimiento").text(model.variantes[0].caracteristicas.rendimiento);*/
                 
-                var seeMoreUrl = $("#btn-see-more").attr("href") + id;
+                var seeMoreUrl = "/modelo/" + model.nombre + "/" + model._id;
+
+                console.log(seeMoreUrl);
                 
                 $("#btn-see-more").attr("href", seeMoreUrl);
 

@@ -6,6 +6,10 @@ let SessionManager = require("../controllers/modules/sessionManager")
 var router = express.Router();
 var controller = new SesionesController();
 
+router.get("/login", function(req, res){
+    res.render("login");
+});
+
 router.post("/login", SessionManager.needLogoutAPI, controller.login_post);
     
 router.post("/logout", SessionManager.needLoginAPI, controller.logout_post);

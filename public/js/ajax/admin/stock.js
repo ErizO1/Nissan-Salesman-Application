@@ -25,7 +25,7 @@ $(document).ready(function(){
     
     function refreshStocks(){
 
-        var URL = "/stock";
+        var URL = "/api/Vehiculos";
         
         $.ajax({
             url: URL,

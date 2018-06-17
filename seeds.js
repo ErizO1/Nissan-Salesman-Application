@@ -1,8 +1,10 @@
-var mongoose = require("mongoose");
-var Modelo = require("./models/ModelosModel");
-var faker = require("faker");
+let mongoose = require("mongoose");
+let Modelo = require("./models/ModelosModel");
+let VariantesModel = require("./models/VariantesModel");
+let faker = require("faker");
+let request = require("request");
 
-var carModels = [
+let carModels = [
     {
         nombre: "Altima",
         categoria: "Autos",
@@ -246,11 +248,12 @@ var carModels = [
     },
 ];
 
-var models = [];
+let models = [];
 
 for(var i=0; i<15; i++){
     var newModel = {
         nombre: carModels[i].nombre,
+        descripcion: "Descripcion chida",
         anio: 2018,
         categoria: carModels[i].categoria,
         colores : {
@@ -277,51 +280,6 @@ for(var i=0; i<15; i++){
             banner: carModels[i].images.banner
         },
         variantes: [           
-            {
-                nombre: faker.address.city(),
-                precio: faker.commerce.price(),
-                caracteristicas: {
-                    AireAcondicionado: faker.random.boolean(),
-                    Puertas: faker.random.number(),
-                    Quemacocos: faker.random.boolean(), 
-                    Convertible: faker.random.boolean(),
-                    Rendimiento: faker.random.number(),
-                    Potencia: faker.random.number(),
-                    Torque: faker.random.number(),
-                    Transmision: "Automática",
-                    Traccion: "4x4"
-                }
-            },
-            {
-                nombre: faker.address.city(),
-                precio: faker.commerce.price(),
-                caracteristicas: {
-                    AireAcondicionado: faker.random.boolean(),
-                    Puertas: faker.random.number(),
-                    Quemacocos: faker.random.boolean(), 
-                    Convertible: faker.random.boolean(),
-                    Rendimiento: faker.random.number(),
-                    Potencia: faker.random.number(),
-                    Torque: faker.random.number(),
-                    Transmision: "Automática",
-                    Traccion: "4x4"
-                }
-            },
-            {
-                nombre: faker.random.word(),
-                precio: faker.commerce.price(),
-                caracteristicas: {
-                    AireAcondicionado: faker.random.boolean(),
-                    Puertas: faker.random.number(),
-                    Quemacocos: faker.random.boolean(), 
-                    Convertible: faker.random.boolean(),
-                    Rendimiento: faker.random.number(),
-                    Potencia: faker.random.number(),
-                    Torque: faker.random.number(),
-                    Transmision: "Automática",
-                    Traccion: "4x4"
-                }
-            }
         ]
     };
 
@@ -336,36 +294,116 @@ function seedDB(){
             console.log(err);
         }else{
             models.forEach(function(model){
-                Modelo.create(model, (err, foundModels) => {
+                Modelo.create(model, (err, createdModel) => {
                     if(err){
                         console.log(err);
                     }else{
-                        console.log(foundModels);
+                        console.log(createdModel);
+
+                        var id = createdModel._id; 
+                        var url = "http://localhost:3000/api/Modelos/"+id+"/Variantes";
+
+                        for(var i=0; i<3; i++){
+
+                            var variante = {
+                                nombre: faker.address.city(),
+                                precio: faker.commerce.price(),
+                                caracteristicas: {
+                                    AireAcondicionado: faker.random.boolean(),
+                                    Puertas: faker.random.number(),
+                                    Quemacocos: faker.random.boolean(), 
+                                    Convertible: faker.random.boolean(),
+                                    Rendimiento: faker.random.number(),
+                                    Potencia: faker.random.number(),
+                                    Torque: faker.random.number(),
+                                    Transmision: "Automática",
+                                    Traccion: "4x4"
+                                }
+                            };
+
+                            /*
+                            request.post(
+                                {
+                                    url: url,
+                                    body: JSON.stringify(variante)
+                                }, 
+                                function(err,httpResponse,body){
+                                    if(err){
+                                        console.log(err);
+                                    }else{
+
+                                        console.log("Variante agregada"); 
+                                    }
+                                }
+                            );*/
+
+                            request({
+                                url: url,
+                                method: "POST",
+                                json: true,   // <--Very important!!!
+                                body: variante
+                            }, function (error, response, body){
+                                console.log(response);
+                            });
+                        }
                     }
                 });
             });
         }
     });
+    
+    /*request.get("http://localhost:3000/api/ComparadorExt", (error, response, body) => {
+        if(error) {
+            return console.dir(error);
+        }
+        
+        console.log(body);
+        var modelosRecibidos = JSON.stringify(body);
+        console.log(modelosRecibidos);
 
-    /*
-    User.remove({}, (err) => {
-        if(err){
-            console.log(err);
-        }else{
-            Users.forEach(function(userToCreate){
 
-                User.register(userToCreate, userToCreate.password, function(err, registeredUser){
-                    if(err){ //If not authenticated, the user won't go on
-                        console.log(err);
-                        //return res.render("register");
-                        return res.send("Error");
-                    }else{
-                        console.log("User added");
+        modelosRecibidos.forEach((modelo) => {
+
+            let id = modelo._id;
+            let url = "http://localhost:3000/api/Modelos/"+id+"/Variantes";
+
+
+            for(var i=0; i<3; i++){
+
+                var variante = {
+                    nombre: faker.address.city(),
+                    precio: faker.commerce.price(),
+                    caracteristicas: {
+                        AireAcondicionado: faker.random.boolean(),
+                        Puertas: faker.random.number(),
+                        Quemacocos: faker.random.boolean(), 
+                        Convertible: faker.random.boolean(),
+                        Rendimiento: faker.random.number(),
+                        Potencia: faker.random.number(),
+                        Torque: faker.random.number(),
+                        Transmision: "Automática",
+                        Traccion: "4x4"
                     }
+                };
+                
+                request.post({
+                    "headers": { "content-type": "application/x-www-form-urlencoded" },
+                    "url": url,
+                    "body": variante
+                }, (error, response, body) => {
+                    if(error) {
+                        return console.dir(error);
+                    }
+                    console.dir(JSON.parse(body));
                 });
 
-            });
-        }
+                console.log("Hey");
+                ///:id/Variante
+            }
+                       
+
+        });
+
     });*/
 
 }

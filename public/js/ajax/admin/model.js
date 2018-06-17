@@ -9,14 +9,17 @@ $(document).ready(function(){
 
     function showModels(models){
         var result = "";
+
+        var models = models.data;
+        console.log(models);
     
         $.each(models, function(index, model){
             result += "<tr class='table__row-td'>";
             result += "<tr class='table__row-td'>";
-            result += "<td class='table__td'>" + model.modelo + "</td>";
+            result += "<td class='table__td'>" + model.nombre + "</td>";
             result += "<td class='table__td'>" + model.anio + "</td>";
-            result += "<td class='table__td'>" + model.modelo + "</td>";
             result += "<td class='table__td'>" + model.categoria + "</td>";
+            result += "<td class='table__td'>" + model.variantes.length + "</td>";
             result += "<td class='table__controls'>";
             result += "<div class='table__dropdown dropdown dropleft'>";
             result += "<a class='table__dropdown-button' id='data1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>...</a>";
@@ -44,7 +47,7 @@ $(document).ready(function(){
    
     function refreshModels(){
 
-        var URL = "/cars";
+        var URL = "http://localhost:3000/api/Modelos";
         
         $.ajax({
             url: URL,

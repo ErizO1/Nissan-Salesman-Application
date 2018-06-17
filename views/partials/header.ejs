@@ -23,13 +23,13 @@
 			<i class="header__button fas fa-align-justify" id="menu-icon"></i>
 			<nav class="header__menu">
 				<a class="header__link" href="/home">Home</a>
-						<% if(currentUser.role == "Admin"){ %>
-								<a class="header__link" href="/employees/managers/show">Managers</a>
-								<a class="header__link" href="/agency/show">Agency</a>
-								<a class="header__link" href="/cars/models">Models</a>
-								<a class="header__link" href="/vehicles/global">Stock</a>
+						<% if(currentUser.rol == "5b24b3d8f0da9671e1c9f665"){ %>
+								<a class="header__link" href="/gerentes">Managers</a>
+								<a class="header__link" href="/agencias">Agencia</a>
+								<a class="header__link" href="/modelos">Modelos</a>
+								<a class="header__link" href="/stock/global">Stock</a>
 						<% } else{ %>
-							<% if(currentUser.role == "Manager"){ %>
+							<% if(currentUser.rol == "5b24b3d7f0da9671e1c9f664"){ %>
 									<a class="header__link" href="/employees/salesmen/show">Employees</a>
 									<a class="header__link" href="/vehicles/local">Stock</a>
 									<a class="header__link" href="/requests/shippings">Shippings</a>
@@ -39,11 +39,11 @@
 									<a class="header__link" href="/clients/show">Clients</a>
 									<a class="header__link" href="/sales/own">Sales</a>
 									<a class="header__link" href="/vehicles/salesman">Stock</a>
-									<a class="header__link" href="/comparer">Comparer</a>
+									<a class="header__link" href="/comparador">Comparer</a>
 							<% } %>
 						<% } %>
 				<div class="btn-group header__link--sign-drop">
-				  <a href="" class="header__link "><%= currentUser.name %></a>
+				  <a href="" class="header__link "><%= currentUser.nombre %></a>
 				  <a href="" class="header__link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				    <span class="sr-only">Toggle Dropdown</span>
 				  </a>

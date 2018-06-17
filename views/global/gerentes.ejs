@@ -27,122 +27,148 @@
 
     <!--Add employee-->
     <div class="modal--fade modal fade add-employee" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="add-branch">
-            <div class="modal-dialog modal--form-size">
-                <div class="modal-form modal-content">
-                    <form id="add-employee-form">
-                        <div class="modal-form__header">
-                            <h2 class="modal-form__title">Editar gerente</h2>
-                            <i class="modal-form__exit fas fa-times" id="modal-exit" data-dismiss="modal" aria-label="Close"></i>
+        <div class="modal-dialog modal--form-size">
+            <div class="modal-form modal-content">
+                <form id="add-employee-form">
+                    <div class="modal-form__header">
+                        <h2 class="modal-form__title" id="add-gerente">Agregar gerente</h2>
+                        <i class="modal-form__exit fas fa-times" id="modal-exit" data-dismiss="modal" aria-label="Close"></i>
+                    </div>
+                    <div class="modal-form__body">
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Usuario</label>
+                            <input type="text" class="modal-form__input" name="username">
                         </div>
-                        <div class="modal-form__body">
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Usuario</label>
-                                <input type="text" class="modal-form__input" name="username">
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Contraseña</label>
-                                <input type="password" class="modal-form__input" name="password">
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Nombre</label>
-                                <input type="text" class="modal-form__input" name="nombre">
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Apellido Paterno</label>
-                                <input type="text" class="modal-form__input" name="apellidoP">
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Apellido Materno</label>
-                                <input type="text" class="modal-form__input" name="apellidoM">
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Teléfono</label>
-                                <input type="text" class="modal-form__input" name="telefono">
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Correo</label>
-                                <input type="email" class="modal-form__input" name="correo">
-                            </div>
-                            <div class="modal-form__group modal-form__group--large">
-                                <label for="" class="modal-form__label">Dirección</label>
-                                <input type="text" class="modal-form__input" name="direccion">
-                            </div>
-                            <p class="modal-form__label modal-form__label--title">Agencia</p>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Estado</label>
-                                <select id="form-stock-state" class="modal-form__input" name="estado">
-                                    <option value="Servicio">Seleccione uno</option>
-                                </select>
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Municipio</label>
-                                <select id="form-stock-city" class="modal-form__input" name="municipio">
-                                    <option value="Servicio">Seleccione uno</option>
-                                </select>								  
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Agencia</label>
-                                <select id="form-stock-agency" class="modal-form__input" name="nombreAgencia">
-                                    <option value="Servicio">Seleccione uno</option>
-                                </select>								  
-                            </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Contraseña</label>
+                            <input type="password" class="modal-form__input" name="password">
                         </div>
-                        <div class="modal-form__footer">
-                            <div class="modal-form__btn-group">
-                                <a href="#" class="modal-form__btn modal-form__btn--cancel" data-dismiss="modal" aria-label="Close">Cancelar</a>
-                                <a href="#" id="add-manager-submit" class="modal-form__btn modal-form__btn--confirm" data-dismiss="modal" aria-label="Close">Confirmar</a>
-                            </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Nombre</label>
+                            <input type="text" class="modal-form__input" name="nombre">
                         </div>
-                    </form>
-                </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Apellido Paterno</label>
+                            <input type="text" class="modal-form__input" name="apellidoP">
+                        </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Apellido Materno</label>
+                            <input type="text" class="modal-form__input" name="apellidoM">
+                        </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Teléfono</label>
+                            <input type="text" class="modal-form__input" name="telefono">
+                        </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Correo</label>
+                            <input type="email" class="modal-form__input" name="correo">
+                        </div>
+                        <p class="modal-form__label modal-form__label--title">Agencia</p>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Estado</label>
+                            <select class="modal-form__input modal-form__input--select" name="estado" id="filter-state-add">
+                                <option value="">Seleccione uno</option>
+                            </select>
+                        </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Municipio</label>
+                            <input type="email" class="modal-form__input" name="ciudad">								  
+                        </div>
+                        <div class="modal-form__group modal-form__group--large">
+                            <label for="" class="modal-form__label">Dirección</label>
+                            <input type="text" class="modal-form__input" name="domicilio">
+                        </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">CP</label>
+                            <input type="text" class="modal-form__input" name="cp">
+                        </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Agencia</label>
+                            <input type="email" class="modal-form__input" name="agencia">								  
+                        </div>
+                    </div>
+                    <div class="modal-form__footer">
+                        <div class="modal-form__btn-group">
+                            <a href="#" class="modal-form__btn modal-form__btn--cancel" data-dismiss="modal" aria-label="Close">Cancelar</a>
+                            <a href="#" id="add-manager-submit" class="modal-form__btn modal-form__btn--confirm" data-dismiss="modal" aria-label="Close">Confirmar</a>
+                        </div>
+                    </div>
+                </form>
             </div>
+        </div>
     </div>
         
     <!--Edit employee agency manager-->
-    <div class="modal--fade modal fade edit-employee" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal--form-size">
-                <div class="modal-form modal-content">
-                    <form action="" id="edit-employee-form">
-                        <div class="modal-form__header">
-                            <h2 class="modal-form__title">Editar gerente</h2>
-                            <i class="modal-form__exit fas fa-times" id="modal-exit" data-dismiss="modal" aria-label="Close"></i>
+    <div class="modal--fade modal fade edit-employee" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="add-branch">
+        <div class="modal-dialog modal--form-size">
+            <div class="modal-form modal-content">
+                <form id="edit-employee-form">
+                    <div class="modal-form__header">
+                        <h2 class="modal-form__title">Editar gerente</h2>
+                        <i class="modal-form__exit fas fa-times" id="modal-exit" data-dismiss="modal" aria-label="Close"></i>
+                    </div>
+                    <div class="modal-form__body">
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Usuario</label>
+                            <input type="text" class="modal-form__input" name="username" id="username">
                         </div>
-                        <div class="modal-form__body">
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Nombre</label>
-                                <input id="form-e-manager_name" name="nombre" type="text" class="modal-form__input">
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Apellido Paterno</label>
-                                <input id="form-e-manager_surname" name="apellidoP" type="text" class="modal-form__input">
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Apellido Materno</label>
-                                <input id="form-e-manager_surname" name="apellidoM" type="text" class="modal-form__input">
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Teléfono</label>
-                                <input id="form-e-manager_phone" name="telefono" type="text" class="modal-form__input">
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Correo</label>
-                                <input id="form-e-manager_email" name="correo" type="email" class="modal-form__input">
-                            </div>
-                            <div class="modal-form__group modal-form__group--large">
-                                <label for="" class="modal-form__label">Dirección</label>
-                                <input id="form-e-manager_address" name="direccion" type="text" class="modal-form__input">
-                            </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Contraseña</label>
+                            <input type="password" class="modal-form__input" name="password" id="password">
                         </div>
-                        <div class="modal-form__footer">
-                            <div class="modal-form__btn-group">
-                                <a href="#" class="modal-form__btn modal-form__btn--cancel" data-dismiss="modal" aria-label="Close">Cancelar</a>
-                                <a href="#" id="edit-manager-submit" class="modal-form__btn modal-form__btn--confirm" data-dismiss="modal" aria-label="Close">Confirmar</a>
-                            </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Nombre</label>
+                            <input type="text" class="modal-form__input" name="nombre" id="nombre">
                         </div>
-                    </form>
-                </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Apellido Paterno</label>
+                            <input type="text" class="modal-form__input" name="apellidoP" id="apellido-p">
+                        </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Apellido Materno</label>
+                            <input type="text" class="modal-form__input" name="apellidoM" id="apellido-m">
+                        </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Teléfono</label>
+                            <input type="text" class="modal-form__input" name="telefono" id="telefono">
+                        </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Correo</label>
+                            <input type="email" class="modal-form__input" name="correo" id="correo">
+                        </div>
+                        <p class="modal-form__label modal-form__label--title">Agencia</p>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Estado</label>
+                            <input type="email" class="modal-form__input" name="estado" id="estado">
+                        </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Municipio</label>
+                            <input type="email" class="modal-form__input" name="ciudad" id="ciudad">								  
+                        </div>
+                        <div class="modal-form__group modal-form__group--large">
+                            <label for="" class="modal-form__label">Dirección</label>
+                            <input type="text" class="modal-form__input" name="domicilio" id="domicilio">
+                        </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">CP</label>
+                            <input type="text" class="modal-form__input" name="cp" id="cp">
+                        </div>
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Agencia</label>
+                            <input type="email" class="modal-form__input" name="agencia" id="agencia">								  
+                        </div>
+                    </div>
+                    <div class="modal-form__footer">
+                        <div class="modal-form__btn-group">
+                            <a href="#" class="modal-form__btn modal-form__btn--cancel" data-dismiss="modal" aria-label="Close">Cancelar</a>
+                            <a href="#" id="edit-manager-submit" class="modal-form__btn modal-form__btn--confirm" data-dismiss="modal" aria-label="Close">Confirmar</a>
+                        </div>
+                    </div>
+                </form>
             </div>
+        </div>
     </div>
+  
 
     <div class="modal--fade modal fade save-changes" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="add-branch">
         <div class="modal-dialog modal-dialog-centered">

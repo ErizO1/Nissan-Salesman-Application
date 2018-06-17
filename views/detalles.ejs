@@ -1,11 +1,13 @@
+<% include ./partials/header %>
+
 <section class="info">
     <section class="banner">
         <div class="row">
             <div class="col-md-12">
-                <img class="banner__picture" src="<%= model.photos.bannerImageURL %>" alt="">
+                <img class="banner__picture" src="<%= model.imagenes.banner %>" alt="">
                 <div class="container">
                     <div class="banner__info">
-                        <h1 class="banner__title"><%= model.modelo %></h1>
+                        <h1 class="banner__title"><%= model.nombre %></h1>
                         <div class="separator separator--white"></div>
                         <p class="banner__description"><%= model.descripcion.substr(0,65) %>.</p>
                     </div>
@@ -28,24 +30,24 @@
                 <div class="tab-pane fade active show" id="nav-features" role="tabpanel" aria-labelledby="nav-features-tab">
                     <div class="row">
                         <div class="col-md-12 details__introduction">
-                            <h2 class="details__title"><%= model.modelo %></h2>
-                            <p class="details__description">El <%= model.modelo %> te otorga nuevas caracteristicas que seguro te fascinarán. <%= model.descripcion %></p>
+                            <h2 class="details__title"><%= model.nombre %></h2>
+                            <p class="details__description">El <%= model.nombre %> te otorga nuevas caracteristicas que seguro te fascinarán. <%= model.descripcion %></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="details__features">
                             <div class="col-md-6">
                                 <div class="feature-car">
-                                    <img class="feature-car__image" src="<%= model.photos.imagesURL[0] %>" alt="">
+                                    <img class="feature-car__image" src="<%= model.imagenes.urls[0] %>" alt="">
                                     <div class="feature-car__info">
                                         <h3 class="feature-car__title">Satisfacción</h3>
-                                        <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia nobis dignissimos?</p>
+                                        <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia n<obis dignissimos?</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="feature-car">
-                                    <img class="feature-car__image" src="<%= model.photos.imagesURL[1] %>" alt="">
+                                    <img class="feature-car__image" src="<%= model.imagenes.urls[1] %>" alt="">
                                     <div class="feature-car__info">
                                         <h3 class="feature-car__title">Poder</h3>
                                         <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia nobis dignissimos?</p>
@@ -54,7 +56,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="feature-car">
-                                    <img class="feature-car__image" src="<%= model.photos.imagesURL[2] %>" alt="">
+                                    <img class="feature-car__image" src="<%= model.imagenes.urls[2] %>" alt="">
                                     <div class="feature-car__info">
                                         <h3 class="feature-car__title">Alcance</h3>
                                         <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia nobis dignissimos?</p>
@@ -63,7 +65,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="feature-car">
-                                    <img class="feature-car__image" src="<%= model.photos.imagesURL[3] %>" alt="">
+                                    <img class="feature-car__image" src="<%= model.imagenes.urls[3] %>" alt="">
                                     <div class="feature-car__info">
                                         <h3 class="feature-car__title">Comodidad</h3>
                                         <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia nobis dignissimos?</p>
@@ -72,7 +74,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="feature-car">
-                                    <img class="feature-car__image" src="<%= model.photos.imagesURL[4] %>" alt="">
+                                    <img class="feature-car__image" src="<%= model.imagenes.urls[4] %>" alt="">
                                     <div class="feature-car__info">
                                         <h3 class="feature-car__title">Confianza</h3>
                                         <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia nobis dignissimos?</p>
@@ -81,7 +83,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="feature-car">
-                                    <img class="feature-car__image" src="<%= model.photos.imagesURL[5] %>" alt="">
+                                    <img class="feature-car__image" src="<%= model.imagenes.urls[5] %>" alt="">
                                     <div class="feature-car__info">
                                         <h3 class="feature-car__title">Identidad</h3>
                                         <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia nobis dignissimos?</p>
@@ -105,8 +107,8 @@
                                     <h3 class="attribute__title">Rendimiento</h3>
                                     <img class="attribute__icon" src="/img/icons/details/yield/1.png">
                                     <ul class="attribute__list">
-                                        <li>El asombroso <%= model.modelo %> es capaz de rendir hasta
-                                            <%= model.variantes[0].caracteristicas.rendimiento %>, lleva
+                                        <li>El asombroso <%= model.nombre %> es capaz de rendir hasta
+                                            , lleva
                                             tus viajes al siguiente nivel.
                                         </li>
                                     </ul>
@@ -117,8 +119,8 @@
                                     <h3 class="attribute__title">Desempeño</h3>
                                     <img class="attribute__icon" src="/img/icons/details/yield/2.png">
                                     <ul class="attribute__list">
-                                        <li><%= model.variantes[0].caracteristicas.potencia %> son
-                                            los caballos de fuerza con los que el <%= model.modelo %> funciona,
+                                        <li> son
+                                            los caballos de fuerza con los que el <%= model.nombre %> funciona,
                                             siente el poder de este vehículo en tus manos.
                                         </li>
                                     </ul>
@@ -129,7 +131,7 @@
                                     <h3 class="attribute__title">Motor</h3>
                                     <img class="attribute__icon" src="/img/icons/details/yield/3.png">
                                     <ul class="attribute__list">
-                                        <li><%= model.variantes[0].caracteristicas.torque %> será la pieza clave
+                                        <li>será la pieza clave
                                             para poder brindarte todas las funcionalidades.
                                         </li>
                                     </ul>
@@ -140,7 +142,7 @@
                                     <h3 class="attribute__title">Transmisión</h3>
                                     <img class="attribute__icon" src="/img/icons/details/yield/3.png">
                                     <ul class="attribute__list">
-                                        <li>El <%= model.modelo %> cuenta con una transmisión <%= model.variantes[0].caracteristicas.transmision %>.
+                                        <li>El <%= model.nombre %> cuenta con una transmisión.
                                             Permítete la oportunidad de una gran experiencia de uso.
                                         </li>
                                     </ul>
@@ -151,7 +153,7 @@
                                     <h3 class="attribute__title">Tracción</h3>
                                     <img class="attribute__icon" src="/img/icons/details/yield/3.png">
                                     <ul class="attribute__list">
-                                        <li><%= model.variantes[0].caracteristicas.traccion %> será el instrumento que te le añadirá
+                                        <li> será el instrumento que te le añadirá
                                             un toque especial al realizar tus trayectos y nuevas aventuras.
                                         </li>
                                     </ul>
@@ -164,3 +166,5 @@
         </div>
     </section>
 </section>
+<script src="/js/Script.js"></script>
+<% include ./partials/footer %>
