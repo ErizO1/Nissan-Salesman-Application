@@ -11,6 +11,7 @@ let Agentes = require("./models/AgentesModel");
 let swaggerUi = require('swagger-ui-express');
 let swaggerDocument = require('./swagger.json');
 let sessionManager = require("./controllers/modules/sessionManager");
+let seedDB = require("./seeds");
 
 //seedDB();
 
