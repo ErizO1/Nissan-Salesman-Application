@@ -11,6 +11,7 @@ let Agentes = require("./models/AgentesModel");
 let swaggerUi = require('swagger-ui-express');
 let swaggerDocument = require('./swagger.json');
 let sessionManager = require("./controllers/modules/sessionManager");
+let seedDB = require("./seeds");
 
 //seedDB();
 
@@ -21,6 +22,7 @@ let agenciasRouter = require("./routes/api/AgenciasRouter");
 let agentesRouter = require("./routes/api/AgentesRouter");
 let modelosRouter = require("./routes/api/ModelosRouter");
 let comparadorExtRouter = require("./routes/api/ComapradorExtRouter");
+let vistasRouter = require("./routes/index");
 
 //=======================App setup===============================
 
@@ -58,6 +60,7 @@ app.use(function(req, res, next){
 app.use('/api/Docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //Routing instances
+app.use(vistasRouter);
 app.use("/api/Sesion", sesionesRouter);
 app.use("/api/Clientes", sessionManager.needLoginAPI, clientesRouter);
 app.use("/api/Agencias", sessionManager.needLoginAPI, agenciasRouter);

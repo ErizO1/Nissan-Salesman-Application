@@ -1,26 +1,33 @@
 $(document).ready(function(){
 
     refreshManagers();
-    fillSelectStates();
 
+    $("#add-gerente").on('click', loadStates);
     $("#add-manager-submit").on('click', addEmployee);
     $("#btn-remove-manager").on('click', removeManager);
 
+    /*
     $("#form-stock-state").on('change', fillSelectCities);
-    $("#form-stock-city").on('change', fillSelectAgencies);
+    $("#form-stock-city").on('change', fillSelectAgencies);*/
 
     function showManagers(managers){
         var result = "";
 
-        console.log(managers);
+        var managers = managers.data;
+        var rol = "Gerente";
+
+        var filteredArray = managers.filter(function(itm){
+            return rol.indexOf(itm.rol.nombre) > -1;
+        });
+          
+        managers = filteredArray;
     
         $.each(managers, function(index, manager){
             result += "<tr class='table__row-td'>";
-            result += "<td class='table__td'>" + manager.name + " " + manager.surname + "</td>";
-            result += "<td class='table__td'>Tabaranch</td>";
-            result += "<td class='table__td'>" + manager.phone + "</td>";
-            result += "<td class='table__td'>" + manager.email + "</td>";
-            result += "<td class='table__td'>" + manager.address + "</td>";
+            result += "<td class='table__td'>" + manager.nombre + " " + manager.apellidoP + "</td>";
+            result += "<td class='table__td'>" + manager.telefono + "</td>";
+            result += "<td class='table__td'>" + manager.correo + "</td>";
+            result += "<td class='table__td'>" + manager.domicilio + "</td>";
             result += "<td class='table__controls'>";
             result += "<div class='table__dropdown dropdown dropleft'>";
             result += "<a class='table__dropdown-button' id='data1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>...</a>";
@@ -47,8 +54,8 @@ $(document).ready(function(){
    
     function refreshManagers(){
 
-        var URL = "/employees/managers";
-        console.log(URL);
+        var URL = "/api/Agentes";
+    
         $.ajax({
             url: URL,
             method: "GET",
@@ -58,10 +65,24 @@ $(document).ready(function(){
 
     }
 
+    function loadStates(){
+        var filter = $("#filter-state-add"),
+            url = "/api/Agencias";
+
+        $.ajax({
+            url: url,
+            method: "GET",
+            success: function(dataStates){
+                var estados = dataStates.data.estado;
+                console.log("estados");
+            }
+        });
+    }
+
     function addEmployee(){
         
         var userForm = $("#add-employee-form"),
-            url = "/employees",
+            url = "/api/Agentes",
             data = {};
         
         userForm.find('[name]').each(function(index, value){
@@ -83,13 +104,20 @@ $(document).ready(function(){
 
     function updateEmployee(){
         var id = $(this).attr("data-id"),
-            url = "/employees/" + id;
+            url = "/api/Agentes/" + id;
         
-        var inputName    = $("#form-e-manager_name"),
-            inputSurname = $("#form-e-manager_surname"),
-            inputEmail   = $("#form-e-manager_email"),
-            inputPhone   = $("#form-e-manager_phone"),
-            inputAddress = $("#form-e-manager_address");
+        var username  = $("#username"),
+            password = $("#password"),
+            nombre   = $("#nombre"),
+            apellidoP = $("#apellido-p"),
+            apellidoM = $("#apellido-m"),
+            telefono = $("#telefono"),
+            correo = $("#correo"),
+            estado = $("#estado"),
+            ciudad = $("#ciudad"),
+            cp = $("#cp"),
+            domicilio = $("#domicilio"),
+            agencia = $("#agencia");
 
             $.ajax({
                 url: url,
@@ -97,19 +125,40 @@ $(document).ready(function(){
                 dataType: "json",
                 success: function(manager){
 
-                    inputName.val(manager.name);
-                    inputSurname.val(manager.surname);
-                    inputEmail.val(manager.email);
-                    inputPhone.val(manager.phone);
-                    inputAddress.val(manager.address);
-                    
+                    console.log(manager);
+
+                    var manager = manager.data[0];
+
+                    console.log(manager);
+
+                    var agencias;
+
+                    $.ajax({
+                        url: "/api/Agencias",
+                        method: "GET",
+                        dataType: "json",
+                        success: function(data){
+                            //agencias.data=
+                        }
+                    });
+
+                    username.val(manager.username);
+                    password.val(manager.password);
+                    nombre.val(manager.nombre);
+                    apellidoP.val(manager.apellidoP);
+                    apellidoM.val(manager.apellidoM);
+                    telefono.val(manager.telefono);
+                    correo.val(manager.correo);
+                    estado.val(manager.estado);
+                    ciudad.val(manager.ciudad);
+                    cp.val(manager.cp);
+                    domicilio.val(manager.domicilio);
+
                     $("#edit-manager-submit").on('click', function(){
                         
                         var userForm = $("#edit-employee-form"),
-                            urlUpdate = "/employees/" + id + "?_method=PUT",
+                            urlUpdate = "/api/Agentes/" + id + "?_method=PUT",
                             data = {};
-                        
-                        console.log(urlUpdate);
                         
                         userForm.find('[name]').each(function(index, value){
                             var name  = $(this).attr('name'),
@@ -117,7 +166,8 @@ $(document).ready(function(){
                 
                             data[name] = value;
                         });
-                        
+
+                        console.log(data);
                         $.ajax({
                             url: urlUpdate,
                             method: "POST",
@@ -132,7 +182,7 @@ $(document).ready(function(){
 
     function removeManager(){
         var id = $("#btn-remove-manager").attr("data-id");
-        var url = "/employees/" + id + "?_method=DELETE";
+        var url = "/api/Agentes/" + id + "?_method=DELETE";
 
         $.ajax({
             url: url,
@@ -140,49 +190,5 @@ $(document).ready(function(){
             success: refreshManagers
         });
     }
-
-    function fillSelectStates(){
-        fillLocationsSelect("/locations/states", "form-stock-state");
-    }
-
-    function fillSelectCities(){
-        var state = $("#form-stock-state").val();
-        var citiesURL = "/locations/cities/" + state;
-        
-        fillLocationsSelect(citiesURL, "form-stock-city");
-
-        var clean = "<option value='none'>Select an agency</option>";
-        $("#form-stock-agency").html(clean);
-    }
-
-    function fillSelectAgencies(){
-        var state = $("#form-stock-state").val();
-        var city = $("#form-stock-city").val();
-
-        var agenciesURL = "/locations/" + state + "/" + city + "/"+"no-manager";
-        
-        fillLocationsSelect(agenciesURL, "form-stock-agency");
-    }
     
-    function fillLocationsSelect(url, id){            
-        $.ajax({
-            url: url,
-            method: "GET",
-            dataType: "json",
-            success: function(locations){
-                var result = "";
-
-                $.each(locations, function(index, location){
-                    result += "<option value='" + location + "'>" + location + "</option>";
-                });
-
-                if(locations.length == 0){
-                    result += "<option value='none'>Not Available</option>";
-                    $("#"+id).html(result);
-                }else{
-                    $("#"+id).html(result);
-                }
-            }
-        });
-    }
 });

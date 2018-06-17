@@ -11,19 +11,21 @@ $(() => {
         e.preventDefault();
         if (tb_user.val() != "" && tb_pass.val() != "") {
             $.ajax({
-                url: "/sign-in",
+                url: "/api/Sesion/login",
                 method: "POST",
                 data: {
                     username: tb_user.val(),
                     password: tb_pass.val()
                 },
                 success: (result) => {
+                    console.log(result);
                     localStorage.userData = JSON.stringify({
-                        user: result.user.user
+                        user: result.data.username
                     });
-                    document.location.href = "/home";
+                    document.location.href = "/inicio";
                 },
                 fail: (err) => {
+                    document.location.href = "/inicio";
                     console.log(err);
                     alert("Error, wacha la consola");
                 }

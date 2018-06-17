@@ -10,15 +10,20 @@ $(document).ready(function(){
 
     function showAgencies(agencies){
         var result = "";
+
+        var agencias = agencies.data;
+
+        console.log(agencias);
     
-        $.each(agencies, function(index, agency){
+        $.each(agencias, function(index, agency){
 
             result += "<tr class='table__row-td'>";
-            result += "<td class='table__td'>" + agency.name + "</td>";
-            result += "<td class='table__td state'>" + agency.state + "</td>";
-            result += "<td class='table__td city'>" + agency.city + "</td>";
+            result += "<td class='table__td'>" + agency.nombre + "</td>";
+            result += "<td class='table__td'>" + agency.telefono + "</td>";
+            result += "<td class='table__td state'>" + agency.estado + "</td>";
+            result += "<td class='table__td city'>" + agency.ciudad + "</td>";
             result += "<td class='table__td'>" + agency.cp + "</td>";
-            result += "<td class='table__td'>" + agency.address + "</td>";
+            result += "<td class='table__td'>" + agency.domicilio + "</td>";
             result += "<td class='table__controls'>";
             result += "<div class='table__dropdown dropdown dropleft'>";
             result += "<a class='table__dropdown-button' id='data1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>...</a>";
@@ -105,21 +110,13 @@ $(document).ready(function(){
     }
     
     function prepareFormToAdd(){
-        $("#form-agency_title").text("Add branch");
-        $("#form-agency_name").val("");
-        $("#form-agency_state").val("");
-        $("#form-agency_city").val("");
-        $("#form-agency_cp").val("");
-        $("#form-agency_address").val("");
-        
-        $("#agency-edit").attr("id", "agency-add");
-        $("#agency-add").on('click', addAgency);
+        f
     }
     
     function refreshAgencies(){
         
         $.ajax({
-            url: "/agency",
+            url: "/api/Agencias",
             method: "GET",
             dataType: "json",
             success: showAgencies
