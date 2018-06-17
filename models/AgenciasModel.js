@@ -9,17 +9,17 @@ var AgenciasSchema = new mongoose.Schema({
     estado: {
         type: String,
         required: true,
-        validate: validador.nombre
+        match: validador.nombre
     },
     ciudad: {
         type: String,
         required: true,
-        validate: validador.nombre
+        match: validador.nombre
     },
     cp: {
         type: String,
         required: true,
-        validate: validador.cp
+        match: validador.cp
     },
     domicilio: {
         type: String,
@@ -28,12 +28,12 @@ var AgenciasSchema = new mongoose.Schema({
     telefono: {
         type: String,
         required: true,
-        validate: validador.telefono
+        match: validador.telefono
     },
     correo: {
         type: String,
         required: true,
-        validate: validador.correo
+        match: validador.correo
     },
     administrador: {
         type: mongoose.Schema.Types.ObjectId,
@@ -76,7 +76,7 @@ AgenciasSchema.statics.guardar = function(id, cliente, callback) {
             "meta.activo": true
         },
         cliente,
-        { new: true },
+        { new: true, runValidators: true },
         callback
     );
 }

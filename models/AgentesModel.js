@@ -7,32 +7,32 @@ let AgentesSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        validate: validador.nombreUsuario
+        match: validador.nombreUsuario
     },
     nombre: {
         type: String,
         required: true,
-        validate: validador.nombre
+        match: validador.nombre
     },
     apellidoP: {
         type: String,
         required: true,
-        validate: validador.nombre
+        match: validador.nombre
     },
     apellidoM: {
         type: String,
         required: true,
-        validate: validador.nombre
+        match: validador.nombre
     },
     telefono: {
         type: String,
         required: true,
-        validate: validador.telefono
+        match: validador.telefono
     },
     correo: {
         type: String,
         required: true,
-        validate: validador.correo
+        match: validador.correo
     },
     estado: {
         type: String,
@@ -45,7 +45,7 @@ let AgentesSchema = new mongoose.Schema({
     cp: {
         type: Number,
         required: true,
-        validate: validador.cp
+        match: validador.cp
     },
     domicilio: {
         type: String,
@@ -92,7 +92,7 @@ AgentesSchema.statics.guardar = function(id, cliente, callback) {
             "meta.activo": true
         },
         cliente,
-        { new: true },
+        { new: true, runValidators: true },
         callback
     );
 }
