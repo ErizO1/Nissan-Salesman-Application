@@ -111,9 +111,9 @@ ModelosController.prototype.variantes_post = (id, variante) => {
 }
 
 // PUT /Variantes/:id
-ModelosController.prototype.variantes_put = (id) => {
+ModelosController.prototype.variantes_put = (id, variante) => {
     return new Promise((resolve, reject) => {
-        VariantesModel.guardar(id, (err, clientes) => { 
+        VariantesModel.guardar(id, variante, (err, clientes) => { 
             if (err) reject(err);
             resolve(clientes);
         });

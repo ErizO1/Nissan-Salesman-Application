@@ -1,43 +1,36 @@
 var mongoose = require("mongoose");
 
-var AgenciasSchema = new mongoose.Schema({
-    nombre: {
-        type: String,
-        required: true
-    },
-    estado: {
-        type: String,
-        required: true
-    },
-    ciudad: {
-        type: String,
-        required: true
-    },
-    cp: {
-        type: String,
-        required: true
-    },
-    domicilio: {
-        type: String,
-        required: true
-    },
-    telefono: {
-        type: String,
-        required: true
-    },
-    correo: {
-        type: String,
-        required: true
-    },
-    administrador: {
+var VehiculosSchema = new mongoose.Schema({
+    modelo: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Agentes",
-        required: false
+        ref: "Modelos",
+        required: true
     },
-    agentes: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: "Agentes",
-        required: false
+    variante: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Variantes",
+        required: true
+    },
+    agencia: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Agencia",
+        required: true
+    },
+    noSerie: {
+        type: String,
+        required: true
+    },
+    fechaEntrada: {
+        type: Date,
+        required: true
+    },
+    status: {
+        type: String,
+        required: true
+    },
+    venta: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Ventas"
     },
     meta: {
         activo: {type: Boolean, default: true},
@@ -47,29 +40,37 @@ var AgenciasSchema = new mongoose.Schema({
 });
 
 // Obtiene todos los clientes
-AgenciasSchema.statics.obtener = function(callback) {
+VehiculosSchema.statics.obtener = function(callback) {
     return this.find({"meta.activo": true}, callback);
 }
 
 // Obtiene todos los clientes
-AgenciasSchema.statics.obtenerPorID = function(id, callback) {
-    return this.find({_id: id, "meta.activo": true}).populate("administrador").populate("agentes").exec(callback);
+VehiculosSchema.statics.obtenerPorID = function(id, callback) {
+    return this.find({_id: id, "meta.activo": true})
+    .populate("modelo")
+    .populate("variante")
+    .populate("agencia")
+    .populate("venta")
+    .exec(callback);
 }
 
-// Ingresa el criterio de búsqueda y obtiene los datos
-AgenciasSchema.statics.buscar = function(busqueda, callback) {
-    busqueda["meta.activo"] = true;
-    console.log(JSON.stringify(busqueda));
-    return this.find(busqueda, callback);
+// Obtiene todos los clientes
+VehiculosSchema.statics.obtenerPorAgencia = function(id, callback) {
+    return this.find({agencia: id, "meta.activo": true})
+    .populate("modelo")
+    .populate("variante")
+    .populate("agencia")
+    .populate("venta")
+    .exec(callback);
 }
 
 // Ingresa un nuevo documento a la coleccion
-AgenciasSchema.statics.crear = function(cliente, callback) {
+VehiculosSchema.statics.crear = function(cliente, callback) {
     return this.create(cliente, callback);
 }
 
 // Ingresa el criterio de búsqueda y obtiene los datos
-AgenciasSchema.statics.guardar = function(id, cliente, callback) {
+VehiculosSchema.statics.guardar = function(id, cliente, callback) {
     console.log(id);
     return this.findOneAndUpdate(
         {
@@ -83,7 +84,7 @@ AgenciasSchema.statics.guardar = function(id, cliente, callback) {
 }
 
 // Elimina lógicamente el registro
-AgenciasSchema.statics.eliminar = function(id, callback) {
+VehiculosSchema.statics.eliminar = function(id, callback) {
     return this.findOneAndUpdate(
         { 
             "_id": id,
@@ -95,6 +96,6 @@ AgenciasSchema.statics.eliminar = function(id, callback) {
     );
 }
 
-var Agencias = mongoose.model("Vehiculos", AgenciasSchema);
+var Vehiculos = mongoose.model("Vehiculos", VehiculosSchema);
 
-module.exports = Agencias;
+module.exports = Vehiculos;

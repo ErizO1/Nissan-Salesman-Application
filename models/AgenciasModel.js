@@ -1,21 +1,25 @@
 var mongoose = require("mongoose");
+var validador = require("../controllers/modules/regexValidations");
 
 var AgenciasSchema = new mongoose.Schema({
     nombre: {
         type: String,
-        required: true
+        required: true, 
     },
     estado: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.nombre
     },
     ciudad: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.nombre
     },
     cp: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.cp
     },
     domicilio: {
         type: String,
@@ -23,11 +27,13 @@ var AgenciasSchema = new mongoose.Schema({
     },
     telefono: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.telefono
     },
     correo: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.correo
     },
     administrador: {
         type: mongoose.Schema.Types.ObjectId,
@@ -54,13 +60,6 @@ AgenciasSchema.statics.obtener = function(callback) {
 // Obtiene todos los clientes
 AgenciasSchema.statics.obtenerPorID = function(id, callback) {
     return this.find({_id: id, "meta.activo": true}).populate("administrador").populate("agentes").exec(callback);
-}
-
-// Ingresa el criterio de búsqueda y obtiene los datos
-AgenciasSchema.statics.buscar = function(busqueda, callback) {
-    busqueda["meta.activo"] = true;
-    console.log(JSON.stringify(busqueda));
-    return this.find(busqueda, callback);
 }
 
 // Ingresa un nuevo documento a la coleccion

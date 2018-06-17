@@ -1,9 +1,9 @@
 let express = require("express");
 let formateador = require("../../controllers/modules/responseFormatter");
-let AgenciasController = require("../../controllers/api/AgenciasController");
+let RouterController = require("../../controllers/api/RouterController");
 
 var router = express.Router();
-var controller = new AgenciasController();
+var controller = new RouterController();
 
 router.get("/", (req, res) => {
     controller.index_get()
