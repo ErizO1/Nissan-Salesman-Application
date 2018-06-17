@@ -94,7 +94,7 @@ router.delete("/:id", (req, res) => {
 // Variantes
 
 router.get("/Variantes/:id", (req, res) => {
-    variantesController.variantes_get(req.params.id)
+    variantesController.id_get(req.params.id)
     .then(
         (clientes) => {
             res.status(200).json(formateador(true, clientes));
@@ -110,6 +110,35 @@ router.get("/Variantes/:id", (req, res) => {
 // Crea una variante en un modelo
 router.post("/:id/Variantes", (req, res) => {
     modelosController.variantes_post(req.params.id, req.body)
+    .then(
+        (clientes) => {
+            res.status(200).json(formateador(true, clientes));
+        },
+        (err) => {
+            res.status(400).json(formateador(false, err));
+        })
+    .catch((err) => {
+        res.status(500).json(formateador(false, err));
+    })
+});
+
+// Crea una variante en un modelo
+router.put("/:id/Variantes", (req, res) => {
+    modelosController.variantes_put(req.params.id, req.body)
+    .then(
+        (clientes) => {
+            res.status(200).json(formateador(true, clientes));
+        },
+        (err) => {
+            res.status(400).json(formateador(false, err));
+        })
+    .catch((err) => {
+        res.status(500).json(formateador(false, err));
+    })
+});
+
+router.delete("/Variantes/:id", (req, res) => {
+    variantesController.variantes_delete(req.params.id)
     .then(
         (clientes) => {
             res.status(200).json(formateador(true, clientes));
