@@ -37,11 +37,6 @@ router.get("/modelo/:nombre/:id", function(req, res){
 
 });
 
-router.get("/compador", function(req, res){
-    res.render("comparer");
-});
-
-
 //Global
 router.get("/gerentes", function(req, res){
     res.render("global/gerentes");
@@ -61,6 +56,42 @@ router.get("/stock/global", function(req, res){
 
 router.get("/", function(req, res){
     res.redirect("/login");
+});
+
+//Gerente
+
+router.get("/empleados", function(req, res){
+    res.render("gerente/empleados");
+});
+
+router.get("/stock/agencia", function(req, res){
+    res.render("gerente/stock");
+});
+
+router.get("/envios", function(req, res){
+    res.render("gerente/envios");
+});
+
+router.get("/ventas/local", function(req, res){
+    res.render("gerente/ventas");
+});
+
+//Vendedor
+
+router.get("/clientes", function(req, res){
+    res.render("vendedor/clientes");
+});
+
+router.get("/ventas/vendedor", function(req, res){
+    res.render("vendedor/ventas");
+});
+
+router.get("/stock/local", function(req, res){
+    res.render("vendedor/stock");
+});
+
+router.get("/compador", function(req, res){
+    res.render("comparer");
 });
 
 module.exports = router;

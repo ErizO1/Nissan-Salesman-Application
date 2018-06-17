@@ -35,48 +35,30 @@
                 </tr>
             </thead>
             <tbody class="table__body" id="table-vehicles">
+                <tr class='table__row-td'>
+                    <td class='table__td'> vehicle.model.name </td>
+                    <td class='table__td'> vehicle.serieNumber </td>
+                    <td class='table__td'> vehicle.model.status </td>
+                    <td class='table__td'><a class='table__dropdown-item dropdown-item' href='#' data-toggle='modal' data-target='.vender-vehiculo'>Vender</a></td>
+                </tr>
             </tbody>
         </table>
     </div>
 
-     <!--Add vehicle-->
-    <div class="modal--fade modal fade add-stock" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="add-stock">
+     <!--Vender vehiculo-->
+     <div class="modal--fade modal fade vender-vehiculo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="add-stock">
         <div class="modal-dialog modal--form-size">
             <div class="modal-form modal-content">
                 <div class="modal-form__header">
-                    <h2 class="modal-form__title">Send Stock</h2>
+                    <h2 class="modal-form__title">Vender vehiculo</h2>
                     <i class="modal-form__exit fas fa-times" id="modal-exit" data-dismiss="modal" aria-label="Close"></i>
                 </div>
                 <form action="" id="add-model-form">
                     <div class="modal-form__body">
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Estado</label>
-                                <select id="form-stock-state" class="modal-form__input" name="estado">
-                                    <option value="Servicio">Seleccione uno</option>
-                                </select>
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Municipio</label>
-                                <select id="form-stock-city" class="modal-form__input" name="municipio">
-                                    <option value="Servicio">Seleccione uno</option>
-                                </select>								  
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Agencia</label>
-                                <select id="form-stock-agency" class="modal-form__input" name="agencia">
-                                    <option value="Servicio">Seleccione uno</option>
-                                </select>								  
-                            </div>
-                            <div class="modal-form__group modal-form__group--small">
-                                <label for="" class="modal-form__label">Categoría</label>
-                                <select class="modal-form__input" name="categoria">
-                                    <option value="Servicio">Full stock</option>
-                                    <option value="Servicio">Servicio</option>
-                                    <option value="Auto">Auto</option>
-                                    <option value="Pick Up">PickUp</option>
-                                    <option value="SUV">SUV</option>
-                                </select>								  
-                            </div>                    
+                        <div class="modal-form__group modal-form__group--small">
+                            <label for="" class="modal-form__label">Id de Cliente</label>
+                            <input type="text" name="cliente" id="cliente">
+                        </div>                  
                     </div>
                 </form>
                 <div class="modal-form__footer">
