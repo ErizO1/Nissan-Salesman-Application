@@ -22,6 +22,7 @@ let agenciasRouter = require("./routes/api/AgenciasRouter");
 let agentesRouter = require("./routes/api/AgentesRouter");
 let modelosRouter = require("./routes/api/ModelosRouter");
 let comparadorExtRouter = require("./routes/api/ComapradorExtRouter");
+let estadosRouter = require("./routes/api/EstadosRouter");
 let vistasRouter = require("./routes/index");
 
 //=======================App setup===============================
@@ -66,6 +67,7 @@ app.use("/api/Clientes", sessionManager.needLoginAPI, clientesRouter);
 app.use("/api/Agencias", sessionManager.needLoginAPI, agenciasRouter);
 app.use("/api/Agentes", sessionManager.needLoginAPI, agentesRouter);
 app.use("/api/Modelos", sessionManager.needLoginAPI, modelosRouter);
+app.use("/api/Estados", sessionManager.needLoginAPI, estadosRouter);
 app.use("/api/ComparadorExt", comparadorExtRouter);
 // app.use("/api/Modelos/Variantes", sessionManager.needLoginAPI, variantesRouter);
 // app.use("/api/Clientes", clientesRouter);
