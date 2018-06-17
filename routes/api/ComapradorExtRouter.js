@@ -1,6 +1,6 @@
 let express = require("express");
-let formateador = require("../controllers/modules/responseFormatter");
-let ComapradorExtController = require("../controllers/api/ComparadorExtController");
+let formateador = require("../../controllers/modules/responseFormatter");
+let ComapradorExtController = require("../../controllers/api/ComparadorExtController");
 
 var router = express.Router();
 var controller = new ComapradorExtController();

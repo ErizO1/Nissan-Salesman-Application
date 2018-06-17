@@ -1,39 +1,42 @@
 let mongoose = require("mongoose");
+let validador = require("../controllers/modules/regexValidations");
 let passportLocalMongoose = require("passport-local-mongoose");
 let roles = require("./RolesModel");
 
 let AgentesSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
+        required: true,
+        validate: validador.nombreUsuario
     },
     nombre: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.nombre
     },
     apellidoP: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.nombre
     },
     apellidoM: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.nombre
     },
     telefono: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.telefono
     },
     correo: {
         type: String,
-        required: true
+        required: true,
+        validate: validador.correo
     },
     estado: {
         type: String,
-        required: true
+        required: true,
     },
     ciudad: {
         type: String,
@@ -41,7 +44,8 @@ let AgentesSchema = new mongoose.Schema({
     },
     cp: {
         type: Number,
-        required: true
+        required: true,
+        validate: validador.cp
     },
     domicilio: {
         type: String,
@@ -74,16 +78,9 @@ AgentesSchema.statics.obtenerPorID = function(id, callback) {
     return this.find({_id: id, "meta.activo": true}).populate("agencia").populate("rol").exec(callback);
 }
 
-// Ingresa el criterio de búsqueda y obtiene los datos
-AgentesSchema.statics.buscar = function(busqueda, callback) {
-    busqueda["meta.activo"] = true;
-    console.log(JSON.stringify(busqueda));
-    return this.find(busqueda, callback);
-}
-
 // Ingresa un nuevo documento a la coleccion
-AgentesSchema.statics.crear = function(agente, callback) {
-    return this.register(agente, agente.password , callback);
+AgentesSchema.statics.crear = function(agente, contrasena, callback) {
+    return this.register(agente, contrasena, callback);
 }
 
 // Ingresa el criterio de búsqueda y obtiene los datos

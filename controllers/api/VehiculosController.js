@@ -1,12 +1,12 @@
 'use strict'
 
-let AgentesModel = require("../../models/AgentesModel");
-function AgentesController() {}
+let VehiculosModel = require("../../models/VehiculosModel");
+function VehiculosController() {}
 
 // GET /
-AgentesController.prototype.index_get = () => {
+VehiculosController.prototype.index_get = () => {
     return new Promise((resolve, reject) => {
-        AgentesModel.obtener((err, clientes) => { 
+        VehiculosModel.obtener((err, clientes) => { 
             if (err) reject(err);
             resolve(clientes);
         });  
@@ -17,9 +17,9 @@ AgentesController.prototype.index_get = () => {
 }
 
 // GET /:id
-AgentesController.prototype.id_get = (id) => {
+VehiculosController.prototype.id_get = (id) => {
     return new Promise((resolve, reject) => {
-        AgentesModel.obtenerPorID(id, (err, clientes) => { 
+        VehiculosModel.obtenerPorID(id, (err, clientes) => { 
             if (err) reject(err);
             resolve(clientes);
         });  
@@ -29,10 +29,10 @@ AgentesController.prototype.id_get = (id) => {
     });
 }
 
-// GET /buscar
-AgentesController.prototype.buscar_post = (busqueda) => {
+// GET /agencia/:id
+VehiculosController.prototype.agencia_get = (id) => {
     return new Promise((resolve, reject) => {
-        AgentesModel.buscar(busqueda, (err, clientes) => { 
+        VehiculosModel.obtenerPorAgencia(id, (err, clientes) => { 
             if (err) reject(err);
             resolve(clientes);
         });
@@ -43,11 +43,10 @@ AgentesController.prototype.buscar_post = (busqueda) => {
 }
 
 // POST /
-AgentesController.prototype.index_post = (clienteNuevo) => {
+VehiculosController.prototype.index_post = (clienteNuevo) => {
+    console.log(VehiculosModel);
     return new Promise((resolve, reject) => {
-        let contrasena = clienteNuevo.password;
-        delete clienteNuevo.password;
-        AgentesModel.crear(clienteNuevo, contrasena, (err, cliente) => {
+        VehiculosModel.crear(clienteNuevo, (err, cliente) => {
             if (err) reject(err);
             resolve(cliente);
         });
@@ -58,9 +57,9 @@ AgentesController.prototype.index_post = (clienteNuevo) => {
 }
 
 // PUT /
-AgentesController.prototype.index_put = (id, clienteModificado) => {
+VehiculosController.prototype.index_put = (id, clienteModificado) => {
     return new Promise((resolve, reject) => {
-        AgentesModel.guardar(id, clienteModificado, (err, clienteGuardado) => {
+        VehiculosModel.guardar(id, clienteModificado, (err, clienteGuardado) => {
             if (err) reject(err);
             resolve(clienteGuardado);
         });
@@ -71,9 +70,9 @@ AgentesController.prototype.index_put = (id, clienteModificado) => {
 }
 
 // DELETE /
-AgentesController.prototype.index_delete = (id) => {
+VehiculosController.prototype.index_delete = (id) => {
     return new Promise((resolve, reject) => {
-        AgentesModel.eliminar(id, (err, clienteEliminado) => {
+        VehiculosModel.eliminar(id, (err, clienteEliminado) => {
             if (err) reject(err);
             resolve(clienteEliminado);
         });
@@ -83,4 +82,4 @@ AgentesController.prototype.index_delete = (id) => {
     });
 }
 
-module.exports = AgentesController;
+module.exports = VehiculosController;

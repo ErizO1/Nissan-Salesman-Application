@@ -75,13 +75,6 @@ VariantesSchema.statics.obtenerPorID = function(id, callback) {
     return this.find({_id: id, "meta.activo": true}).populate("administrador").populate("agentes").exec(callback);
 }
 
-// Ingresa el criterio de búsqueda y obtiene los datos
-VariantesSchema.statics.buscar = function(busqueda, callback) {
-    busqueda["meta.activo"] = true;
-    console.log(JSON.stringify(busqueda));
-    return this.find(busqueda, callback);
-}
-
 // Ingresa un nuevo documento a la coleccion
 VariantesSchema.statics.crear = function(cliente, callback) {
     return this.create(cliente, callback);
