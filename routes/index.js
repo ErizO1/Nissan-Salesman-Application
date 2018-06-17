@@ -1,17 +1,13 @@
 var express = require("express");
 var router = express.Router();
 let Modelo = require("../models/ModelosModel");
+let sessionManager = require("../controllers/modules/sessionManager");
 
-router.get("/login",  function(req, res){
+router.get("/", sessionManager.needLogout, function(req, res){
     res.render("login");
 });
 
-router.get("/logout", function(req, res){
-    req.logout();
-    res.redirect("/login");
-});
-
-router.get("/inicio", function(req, res){
+router.get("/inicio", sessionManager.needLogin, function(req, res){
 
     Modelo.find({}, (err, foundModels) => {
         if(err){
@@ -37,7 +33,7 @@ router.get("/modelo/:nombre/:id", function(req, res){
 
 });
 
-router.get("/compador", function(req, res){
+router.get("/comparador", function(req, res){
     res.render("comparer");
 });
 

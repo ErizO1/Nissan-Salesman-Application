@@ -1,5 +1,52 @@
 var mongoose = require("mongoose");
 
+var Caracteristicas = new mongoose.Schema({
+    aireAcondicionado: {
+        type: Boolean,
+        required: true
+    },
+    pasajeros: {
+        type: Number,
+        required: true
+    },
+    capacidadTanque: {
+        type: Number,
+        required: true
+    },
+    puertas: {
+        type: Number,
+        required: true
+    },
+    quemacocos: {
+        type: Boolean,
+        required: true
+    },
+    convertible: {
+        type: Boolean,
+        required: true
+    },
+    rendimiento: {
+        type: Number,
+        required: true
+    },
+    potencia: {
+        type: Number,
+        required: true
+    },
+    torque: {
+        type: Number,
+        required: true
+    },
+    transmision: {
+        type: String,
+        required: true
+    },
+    traccion: {
+        type: String,
+        required: true
+    }
+});
+
 var VariantesSchema = new mongoose.Schema({
     nombre: {
         type: String,
@@ -10,52 +57,7 @@ var VariantesSchema = new mongoose.Schema({
         required: true
     },
     caracteristicas: {
-        type: {
-            aireAcondicionado: {
-                type: Boolean,
-                required: true
-            },
-            pasajeros: {
-                type: Number,
-                required: true
-            },
-            capacidadTanque: {
-                type: Number,
-                required: true
-            },
-            puertas: {
-                type: Number,
-                required: true
-            },
-            quemacocos: {
-                type: Boolean,
-                required: true
-            },
-            convertible: {
-                type: Boolean,
-                required: true
-            },
-            rendimiento: {
-                type: Number,
-                required: true
-            },
-            potencia: {
-                type: Number,
-                required: true
-            },
-            torque: {
-                type: Number,
-                required: true
-            },
-            transmision: {
-                type: String,
-                required: true
-            },
-            traccion: {
-                type: String,
-                required: true
-            }
-        },
+        type: Caracteristicas,
         required: true
     },
     meta: {
@@ -72,7 +74,7 @@ VariantesSchema.statics.obtener = function(callback) {
 
 // Obtiene todos los clientes
 VariantesSchema.statics.obtenerPorID = function(id, callback) {
-    return this.find({_id: id, "meta.activo": true}).populate("administrador").populate("agentes").exec(callback);
+    return this.find({_id: id, "meta.activo": true}, callback);
 }
 
 // Ingresa un nuevo documento a la coleccion
