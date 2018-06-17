@@ -94,12 +94,14 @@ ModelosSchema.statics.obtenerPorID = function(id, callback) {
 
 ModelosSchema.statics.obtenerComparadorExt = function(callback) {
     return this.find({"meta.activo": true}).select({
+        _id: false,
         nombre: true,
         "dimensiones.alto": true,
         "dimensiones.ancho": true,
         "dimensiones.largo": true,
         "imagenes.urls": true,
     }).populate({
+        _id: false,
         path: "variantes",
         model: "Variantes",
         select: {
