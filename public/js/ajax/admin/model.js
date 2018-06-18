@@ -70,6 +70,37 @@ $(document).ready(function(){
 
             data[name] = value;
         });
+
+        //data = JSON.stringify(data);
+        console.log(data);
+
+        var dataToSend = {
+            nombre: data.nombre,
+            descripcion: data.descripcion,
+            anio: data.anio,
+            categoria: data.categoria,
+            colores: {
+                interiores: {
+                    nombre: data.colores.interior.nombre,
+                    codigo: data.colores.interior.codigo,
+                },    
+                exteriores:{
+                    nombre: data.colores.exterior.nombre,
+                    codigo: data.colores.exterior.codigo,
+                } 
+            },
+            dimensiones: {
+                alto: data.dimensiones.alto,
+                ancho: data.dimensiones.ancho,
+                largo: data.dimensiones.largo
+            },
+            imagenes: {
+                urls: data.imagenes.urls,
+                banner: data.imagenes.banner
+            }
+        };
+
+        console.log(dataToSend);
         
         $.ajax({
             url: url,
@@ -114,7 +145,7 @@ $(document).ready(function(){
         });
 
         data = JSON.stringify(data);*/
-
+        
         console.log(data);
         
         

@@ -9,7 +9,7 @@
                     <div class="banner__info">
                         <h1 class="banner__title"><%= model.nombre %></h1>
                         <div class="separator separator--white"></div>
-                        <p class="banner__description"><%= model.descripcion.substr(0,65) %>.</p>
+                        <p class="banner__description"><%= model.descripcion.substr(0,80) %>.</p>
                     </div>
                 </div>
             </div>
@@ -21,8 +21,8 @@
                 <div class="col-md-12">
                     <nav class="nav nav--center sticky-top" role="tablist">
                         <a class="nav-item nav-link active" id="nav-features-tab" data-toggle="tab" href="#nav-features" role="tab" aria-controls="nav-features" aria-selected="true">GENERAL</a>
-                        <a class="nav-item nav-link" id="nav-engine-tab" data-toggle="tab" href="#nav-engine" role="tab" aria-controls="nav-engine" aria-selected="false">FEATURES</a>
-                        <a class="nav-item nav-link" id="nav-workload-tab" data-toggle="tab" href="#workload" role="tab" aria-controls="nav-workload" aria-selected="false">VERSIONS</a>
+                        <a class="nav-item nav-link" id="nav-engine-tab" data-toggle="tab" href="#nav-engine" role="tab" aria-controls="nav-engine" aria-selected="false">DETALLES</a>
+                        <a class="nav-item nav-link" id="nav-versions-tab" data-toggle="tab" href="#nav-versions" role="tab" aria-controls="nav-versions" aria-selected="false">VERSIONES</a>
                     </nav>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     <div class="row">
                         <div class="col-md-12 details__introduction">
                             <h2 class="details__title"><%= model.nombre %></h2>
-                            <p class="details__description">El <%= model.nombre %> te otorga nuevas caracteristicas que seguro te fascinarán. <%= model.descripcion %></p>
+                            <p class="details__description">El <%= model.nombre %> te otorga nuevas caracteristicas que seguro te fascinarán. <%= model.descripcion.substr(0,150) %></p>
                         </div>
                     </div>
                     <div class="row">
@@ -41,7 +41,7 @@
                                     <img class="feature-car__image" src="<%= model.imagenes.urls[0] %>" alt="">
                                     <div class="feature-car__info">
                                         <h3 class="feature-car__title">Satisfacción</h3>
-                                        <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia n<obis dignissimos?</p>
+                                        <p class="feature-car__description">Disfruta de las facilidades que <%= model.nombre %> con su tecnología de última generación para el disfrute.</p>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                     <img class="feature-car__image" src="<%= model.imagenes.urls[1] %>" alt="">
                                     <div class="feature-car__info">
                                         <h3 class="feature-car__title">Poder</h3>
-                                        <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia nobis dignissimos?</p>
+                                        <p class="feature-car__description">Las características del <%= model.nombre %> te sorprenderán, con sus sorprendentes especificaciones no habrá limitantes.</p>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                     <img class="feature-car__image" src="<%= model.imagenes.urls[2] %>" alt="">
                                     <div class="feature-car__info">
                                         <h3 class="feature-car__title">Alcance</h3>
-                                        <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia nobis dignissimos?</p>
+                                        <p class="feature-car__description">Logra vencer tus barreras, con el nuevo <%= model.nombre %> no existe inconveniente alguno para ello.</p>
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                     <img class="feature-car__image" src="<%= model.imagenes.urls[3] %>" alt="">
                                     <div class="feature-car__info">
                                         <h3 class="feature-car__title">Comodidad</h3>
-                                        <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia nobis dignissimos?</p>
+                                        <p class="feature-car__description">En Nissan siempre pensamos en ti, vehículos como el de <%= model.nombre %> cuentan con interiores acojedores.</p>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                                     <img class="feature-car__image" src="<%= model.imagenes.urls[4] %>" alt="">
                                     <div class="feature-car__info">
                                         <h3 class="feature-car__title">Confianza</h3>
-                                        <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia nobis dignissimos?</p>
+                                        <p class="feature-car__description">Preocúpate menos por tu vehículo y más por viajar, el <%= model.nombre %> cuenta con una gran calidad.</p>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                                     <img class="feature-car__image" src="<%= model.imagenes.urls[5] %>" alt="">
                                     <div class="feature-car__info">
                                         <h3 class="feature-car__title">Identidad</h3>
-                                        <p class="feature-car__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, sit nemo odit officia nobis dignissimos?</p>
+                                        <p class="feature-car__description">En Nissan cada transporte tiene su toque, el <%= model.nombre %> es un transporte único diseñado para ti.</p>
                                     </div>
                                 </div>
                             </div>
@@ -96,8 +96,8 @@
                 <div class="tab-pane fade" id="nav-engine" role="tabpanel" aria-labelledby="nav-engine-tab">
                     <div class="row">
                         <div class="col-md-12 details__introduction">
-                            <h2 class="details__title">Rendimiento</h2>
-                            <p class="details__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia facilis doloribus quia maxime molestiae maiores veniam tempora sunt voluptatem ratione?.</p>
+                            <h2 class="details__title">Detalles técnicos</h2>
+                            <p class="details__description">El <%= model.nombre %> cuenta con una serie de funcionalidades y detalles técnicos que lo hacen resaltar entre otros, analiza las siguientes caracteristicas.</p>
                         </div>
                     </div>
                     <div class="row">
@@ -107,7 +107,7 @@
                                     <h3 class="attribute__title">Rendimiento</h3>
                                     <img class="attribute__icon" src="/img/icons/details/yield/1.png">
                                     <ul class="attribute__list">
-                                        <li>El asombroso <%= model.nombre %> es capaz de rendir hasta
+                                        <li>El asombroso <%= model.nombre %> es capaz de rendir hasta puntos que no puedes imaginar
                                             , lleva
                                             tus viajes al siguiente nivel.
                                         </li>
@@ -119,7 +119,7 @@
                                     <h3 class="attribute__title">Desempeño</h3>
                                     <img class="attribute__icon" src="/img/icons/details/yield/2.png">
                                     <ul class="attribute__list">
-                                        <li> son
+                                        <li>El desempeño es medido
                                             los caballos de fuerza con los que el <%= model.nombre %> funciona,
                                             siente el poder de este vehículo en tus manos.
                                         </li>
@@ -131,7 +131,8 @@
                                     <h3 class="attribute__title">Motor</h3>
                                     <img class="attribute__icon" src="/img/icons/details/yield/3.png">
                                     <ul class="attribute__list">
-                                        <li>será la pieza clave
+                                        <li>El excelente motor de calidad del <%= model.nombre %>
+                                            será la pieza clave
                                             para poder brindarte todas las funcionalidades.
                                         </li>
                                     </ul>
@@ -140,9 +141,9 @@
                             <div class="col-md-4">
                                 <div class="attribute">
                                     <h3 class="attribute__title">Transmisión</h3>
-                                    <img class="attribute__icon" src="/img/icons/details/yield/3.png">
+                                    <img class="attribute__icon" src="/img/icons/details/yield/gearshift.svg">
                                     <ul class="attribute__list">
-                                        <li>El <%= model.nombre %> cuenta con una transmisión.
+                                        <li>El <%= model.nombre %> cuenta con una transmisión que se te acomoda.
                                             Permítete la oportunidad de una gran experiencia de uso.
                                         </li>
                                     </ul>
@@ -151,14 +152,63 @@
                             <div class="col-md-4">
                                 <div class="attribute">
                                     <h3 class="attribute__title">Tracción</h3>
-                                    <img class="attribute__icon" src="/img/icons/details/yield/3.png">
+                                    <img class="attribute__icon" src="/img/icons/details/yield/tire.svg">
                                     <ul class="attribute__list">
-                                        <li> será el instrumento que te le añadirá
+                                        <li><%= model.variantes[0].traccion %> será el instrumento que te le añadirá
                                             un toque especial al realizar tus trayectos y nuevas aventuras.
                                         </li>
                                     </ul>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-versions" role="tabpanel" aria-labelledby="nav-versions-tab">
+                    <div class="row">
+                        <div class="col-md-12 details__introduction">
+                            <h2 class="details__title">Versiones</h2>
+                            <p class="details__description">El <%= model.nombre %> cuenta con <%model.variantes.length %> variantes, para que puedas elegir la que más se te acomode.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="details__features">
+                            <% var variantes = model.variantes; var index = 0; %>
+                            <% variantes.forEach(function(variante){ %>
+                               <% if(index % 2){ %>
+                                    <div class="col-md-12 d-flex variante">
+                                        <div class="col-md-4 imagen text-center">
+                                            <img class="version-img" src="<%= model.imagenes.urls[index] %>">
+                                        </div>
+                                        <div class="col-md-8 info-version">
+                                            <h3 class="attribute__title">Rendimiento</h3>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, voluptatibus?</p>
+                                            <ul class="version__list">
+                                                <li><%= variante.rendimiento %>: <%= model.nombre %></li>
+                                                <li><%= variante.potencia %>: <%= model.nombre %></li>
+                                                <li><%= variante.traccion %>: <%= model.nombre %></li>
+                                                <li><%= variante.transmision %>: <%= model.nombre %></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <%  }else{ %>
+                                    <div class="col-md-12 d-flex variante">
+                                        <div class="col-md-8 info">
+                                            <h3 class="attribute__title">Rendimiento</h3>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, voluptatibus?</p>
+                                            <ul class="version__list">
+                                                <li>El asombroso <%= model.nombre %> es </li>
+                                                <li>El asombroso <%= model.nombre %> es </li>
+                                                <li>El asombroso <%= model.nombre %> es </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4 imagen text-center">
+                                            <img class="version-img" src="<%= model.imagenes.urls[index] %>">
+                                        </div>
+                                    </div>
+                                <% } %>
+
+                                <% index++; %>
+                            <% }); %>
                         </div>
                     </div>
                 </div>

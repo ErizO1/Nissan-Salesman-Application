@@ -138,16 +138,30 @@ $(document).ready(function(){
             data[name] = value;
         });
 
-        var data = {
-            nombre: $("#version-nombre").val(),
-            estado: $("#version-precio").val(),
-            ciudad: $("#version-precio").val(),
+        var nombre = $("#nombre").val();
+        var estado = $("#estado").val();
+        var ciudad =$("#ciudad").val();
+        var cp = $("#cp").val();
+        var domicilio = $("#domicilio").val();
+        var telefono = $("#telefono").val();
+        var correo = $("#correo").val();
+
+        var dataToSend = {
+            nombre: nombre,
+            estado: estado,
+            ciudad: ciudad,
+            cp: cp,
+            domicilio: domicilio,
+            telefono: telefono,
+            correo: correo
         };
+
+        console.log(dataToSend);
         
         $.ajax({
             url: url,
             method: "POST",
-            data: data,
+            data: dataToSend,
             success: refreshAgencies
         });
 
@@ -156,7 +170,7 @@ $(document).ready(function(){
 
     function removeAgency(){
         var id = $("#btn-remove-agency").attr("data-id");
-        var url = "/agency/" + id + "?_method=DELETE";
+        var url = "/api/Agencias/" + id + "?_method=DELETE";
 
         console.log(url);
 

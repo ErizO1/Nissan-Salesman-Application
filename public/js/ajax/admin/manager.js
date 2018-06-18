@@ -106,9 +106,7 @@ $(document).ready(function(){
         var id = $(this).attr("data-id"),
             url = "/api/Agentes/" + id;
         
-        var username  = $("#username"),
-            password = $("#password"),
-            nombre   = $("#nombre"),
+        var nombre   = $("#nombre"),
             apellidoP = $("#apellido-p"),
             apellidoM = $("#apellido-m"),
             telefono = $("#telefono"),
@@ -116,7 +114,6 @@ $(document).ready(function(){
             estado = $("#estado"),
             ciudad = $("#ciudad"),
             cp = $("#cp"),
-            rol = $("#rol"),
             domicilio = $("#domicilio"),
             agencia = $("#agencia");
 
@@ -134,8 +131,6 @@ $(document).ready(function(){
 
                     var agencias;
 
-                    username.val(manager.username);
-                    password.val(manager.password);
                     nombre.val(manager.nombre);
                     apellidoP.val(manager.apellidoP);
                     apellidoM.val(manager.apellidoM);
@@ -144,7 +139,6 @@ $(document).ready(function(){
                     estado.val(manager.estado);
                     ciudad.val(manager.ciudad);
                     domicilio.val(manager.domicilio);
-                    rol.val(manager.rol.nombre);
                     cp.val(manager.cp);
                     domicilio.val(manager.domicilio);
 
