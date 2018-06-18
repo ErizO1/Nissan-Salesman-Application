@@ -11,7 +11,7 @@ $(document).ready(function(){
         var result = "";
 
         var models = models.data;
-        console.log(models);
+        console.log("Hey");
     
         $.each(models, function(index, model){
             result += "<tr class='table__row-td'>";
@@ -61,7 +61,7 @@ $(document).ready(function(){
     function addModel(){
         
         var modelForm = $("#add-model-form"),
-            url = "/cars",
+            url = "/api/Modelos",
             data = {};
         
         modelForm.find('[name]').each(function(index, value){
@@ -70,6 +70,37 @@ $(document).ready(function(){
 
             data[name] = value;
         });
+
+        //data = JSON.stringify(data);
+        console.log(data);
+
+        var dataToSend = {
+            nombre: data.nombre,
+            descripcion: data.descripcion,
+            anio: data.anio,
+            categoria: data.categoria,
+            colores: {
+                interiores: {
+                    nombre: data.colores.interior.nombre,
+                    codigo: data.colores.interior.codigo,
+                },    
+                exteriores:{
+                    nombre: data.colores.exterior.nombre,
+                    codigo: data.colores.exterior.codigo,
+                } 
+            },
+            dimensiones: {
+                alto: data.dimensiones.alto,
+                ancho: data.dimensiones.ancho,
+                largo: data.dimensiones.largo
+            },
+            imagenes: {
+                urls: data.imagenes.urls,
+                banner: data.imagenes.banner
+            }
+        };
+
+        console.log(dataToSend);
         
         $.ajax({
             url: url,
@@ -83,17 +114,40 @@ $(document).ready(function(){
         
         var versionForm = $("#add-version-form"),
             id = $("#add-version-submit").attr("data-id");
-            url = "/cars/version/new/" + id,
+            url = "/api/Modelos/" + id + "/Variantes",
             data = {};
         
         console.log(url);
-        
+
+        var data = {
+            nombre: $("#version-nombre").val(),
+            precio: $("#version-precio").val(),
+            caracteristicas: {
+                aireAcondicionado: $("#version-aire").val(),
+                pasajeros: $("#version-pasajeros").val(),
+                capacidadTanque: $("#version-tanque").val(),
+                puertas: $("#version-puertas").val(),
+                quemacocos: $("#version-quemacocos").val(),
+                convertible: $("#version-convertible").val(),
+                rendimiento: $("#version-rendimiento").val(),
+                potencia: $("#version-potencia").val(),
+                torque: $("#version-torque").val(),
+                transmision: $("#version-transmision").val(),
+                traccion: $("#version-traccion").val()
+            }
+        };
+        /*
         versionForm.find('[name]').each(function(index, value){
             var name  = $(this).attr('name'),
                 value = $(this).val();
 
             data[name] = value;
         });
+
+        data = JSON.stringify(data);*/
+        
+        console.log(data);
+        
         
         $.ajax({
             url: url,

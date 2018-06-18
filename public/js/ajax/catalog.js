@@ -40,8 +40,10 @@ $(document).ready(function(){
                 });
 
                 //Modal info
-                $("#modal-title").text(model.nombre);
-                $("#modal-description").text(model.descripcion);
+                $("#modal-title").text(model.nombre) +".";
+                var description = model.descripcion.substr(0, 150);
+
+                $("#modal-description").text(description);
                 /*
                 $("#feature-traccion").text(model.variantes[0].caracteristicas.traccion);
                 $("#feature-transmision").text(model.variantes[0].caracteristicas.transmision);

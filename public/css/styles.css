@@ -22,6 +22,10 @@ body {
   transition: all .3s ease;
 }
 
+.modal-form__group--minium {
+  width: 23%;
+}
+
 .modal-form__label--title {
   color: #C70042;
   display: inline-block;
@@ -269,13 +273,41 @@ a, a:hover {
   background: #fff;
 }
 
+.variante{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.version-img{
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+}
+
+.info-version{
+  text-align: left;
+  padding-right: 100px;
+  padding-left: 50px;
+}
+
+.info p, .info h3{
+  margin-bottom: 2rem;
+}
+
+.version__list{
+  list-style: none;
+  color: #8F9595;
+  width: 100%;
+  padding: 0;
+}
+
 .separator--dashed {
   border-bottom: 2px dashed rgba(0, 0, 0, 0.3);
 }
 
 .nav-item {
   font-size: 13px;
-  padding: 15px 30px;
+  padding: 15px 20px;
 }
 
 .nav-item.active {

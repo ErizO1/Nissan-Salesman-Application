@@ -124,57 +124,97 @@ function updateEmployee(){
         $.ajax({
             url: url,
             method: "GET",
-            dataType: "json",
-            success: function(manager){
+            success: function(dataStates){
+                var estados = dataStates.data.estado;
+                console.log("estados");
+            }
+        });
+    }
 
-                console.log(manager);
+    function addEmployee(){
+        
+        var userForm = $("#add-employee-form"),
+            url = "/api/Agentes",
+            data = {};
+        
+        userForm.find('[name]').each(function(index, value){
+            var name  = $(this).attr('name'),
+                value = $(this).val();
 
-                var manager = manager.data[0];
+            data[name] = value;
+        });
 
-                console.log(manager);
+        console.log(data);
+        
+        $.ajax({
+            url: url,
+            method: "POST",
+            data: data,
+            success: refreshManagers
+        });
+    }
 
-                var agencias;
+    function updateEmployee(){
+        var id = $(this).attr("data-id"),
+            url = "/api/Agentes/" + id;
+        
+        var nombre   = $("#nombre"),
+            apellidoP = $("#apellido-p"),
+            apellidoM = $("#apellido-m"),
+            telefono = $("#telefono"),
+            correo = $("#correo"),
+            estado = $("#estado"),
+            ciudad = $("#ciudad"),
+            cp = $("#cp"),
+            domicilio = $("#domicilio"),
+            agencia = $("#agencia");
 
-                $.ajax({
-                    url: "/api/Agencias",
-                    method: "GET",
-                    dataType: "json",
-                    success: function(data){
-                        //agencias.data=
-                    }
-                });
+            $.ajax({
+                url: url,
+                method: "GET",
+                dataType: "json",
+                success: function(manager){
 
-                username.val(manager.username);
-                password.val(manager.password);
-                nombre.val(manager.nombre);
-                apellidoP.val(manager.apellidoP);
-                apellidoM.val(manager.apellidoM);
-                telefono.val(manager.telefono);
-                correo.val(manager.correo);
-                estado.val(manager.estado);
-                ciudad.val(manager.ciudad);
-                cp.val(manager.cp);
-                domicilio.val(manager.domicilio);
+                    console.log(manager);
 
-                $("#edit-manager-submit").on('click', function(){
-                    
-                    var userForm = $("#edit-employee-form"),
-                        urlUpdate = "/api/Agentes/" + id + "?_method=PUT",
-                        data = {};
-                    
-                    userForm.find('[name]').each(function(index, value){
-                        var name  = $(this).attr('name'),
-                            value = $(this).val();
-            
-                        data[name] = value;
-                    });
+                    var manager = manager.data[0];
 
-                    console.log(data);
-                    $.ajax({
-                        url: urlUpdate,
-                        method: "POST",
-                        data: data,
-                        success: refreshManagers
+                    console.log(manager);
+
+                    var agencias;
+
+                    nombre.val(manager.nombre);
+                    apellidoP.val(manager.apellidoP);
+                    apellidoM.val(manager.apellidoM);
+                    telefono.val(manager.telefono);
+                    correo.val(manager.correo);
+                    estado.val(manager.estado);
+                    ciudad.val(manager.ciudad);
+                    domicilio.val(manager.domicilio);
+                    cp.val(manager.cp);
+                    domicilio.val(manager.domicilio);
+
+                    $("#edit-manager-submit").on('click', function(){
+                        
+                        var userForm = $("#edit-employee-form"),
+                            urlUpdate = "/api/Agentes/" + id + "?_method=PUT",
+                            data = {};
+                        
+                        userForm.find('[name]').each(function(index, value){
+                            var name  = $(this).attr('name'),
+                                value = $(this).val();
+                
+                            data[name] = value;
+                        });
+
+                        console.log(data);
+                        $.ajax({
+                            url: urlUpdate,
+                            method: "POST",
+                            data: data,
+                            success: refreshManagers
+                        });
+    
                     });
 
                 });

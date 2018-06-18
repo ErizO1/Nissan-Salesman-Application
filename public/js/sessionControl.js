@@ -7,6 +7,16 @@ $(() => {
     bt_logout.click(function(e) {
         e.preventDefault();
         localStorage.removeItem("userData");
-        document.location.href = "/logout";
+
+        $.ajax({
+            url: "/api/Sesion/logout",
+            method: "POST",
+            success: function(data){
+                document.location.href = "/";
+            },
+            fail: function(err){
+                console.log(err);
+            }
+        })
     });
 });
