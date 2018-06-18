@@ -13,7 +13,7 @@ var VehiculosSchema = new mongoose.Schema({
     },
     agencia: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Agencia",
+        ref: "Agencias",
         required: true
     },
     noSerie: {

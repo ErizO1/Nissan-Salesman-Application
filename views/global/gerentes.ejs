@@ -6,7 +6,7 @@
         <div class="heading__controls">
             <div class="table-filter__group">
             </div>
-            <a class="table-filter__btn" href="#" data-toggle="modal" data-target=".add-employee">
+            <a id="btn-agregar-gerente" class="table-filter__btn" href="#" data-toggle="modal" data-target=".add-employee">
                 Agregar gerente
             </a>
         </div>
@@ -68,6 +68,7 @@
                             <label for="" class="modal-form__label">Estado</label>
                             <select class="modal-form__input modal-form__input--select" name="estado" id="filter-state-add">
                                 <option value="">Seleccione uno</option>
+                                <option value="De Ebriedad">De ebriedad</option>
                             </select>
                         </div>
                         <div class="modal-form__group modal-form__group--small">
@@ -84,7 +85,8 @@
                         </div>
                         <div class="modal-form__group modal-form__group--small">
                             <label for="" class="modal-form__label">Agencia</label>
-                            <input type="email" class="modal-form__input" name="agencia">								  
+                            <select id="cb_agencias_add" class="modal-form__input modal-form__input--select" name="agencia" id="filter-state-add">
+                            </select>
                         </div>
                     </div>
                     <div class="modal-form__footer">
@@ -155,7 +157,8 @@
                         </div>
                         <div class="modal-form__group modal-form__group--small">
                             <label for="" class="modal-form__label">Agencia</label>
-                            <input type="email" class="modal-form__input" name="agencia" id="agencia">								  
+                            <select id="cb_agencias_edit" class="modal-form__input modal-form__input--select" name="agencia" id="filter-state-add">
+                            </select>
                         </div>
                     </div>
                     <div class="modal-form__footer">
@@ -202,7 +205,7 @@
 </section>
 
 <% include ../partials/footer %>
-<script src="/js/ajax/admin/manager.js"></script>
+<script src="/js/ajax/admin/manager2.js"></script>
 <script src="/js/Script.js"></script>
 <script src="/js/sessionControl.js"></script>
 </body>

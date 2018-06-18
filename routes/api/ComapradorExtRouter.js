@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
     controller.index_get()
     .then(
         (clientes) => {
-            res.status(200).json(formateador(true, clientes));
+            res.status(200).json(clientes);
         },
         (err) => {
             res.status(400).json(formateador(false, err));

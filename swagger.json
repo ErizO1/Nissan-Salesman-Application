@@ -8,12 +8,16 @@
     "basePath": "/api",
     "tags": [
         {
-            "name": "Users",
-            "description": "API for users in the system"
+            "name": "Sesiones",
+            "description": "Para iniciar y cerrar sesión, Debe hacerse antes de probar cualquier servicio"
         },
         {
             "name": "Clientes",
             "description": "CRUD de Clientes"
+        },
+        {
+            "name": "Agentes",
+            "description": "CRUD de Agentes"
         }
     ],
     "schemes": [
@@ -26,105 +30,99 @@
         "application/json"
     ],
     "paths": {
-        "/users": {
+        "/Sesion/login": {
             "post": {
                 "tags": [
-                    "Users"
+                    "Sesiones"
                 ],
-                "description": "Create new user in system",
+                "description": "Obtiene todos los clientes (Sin la agencia ni agentes)",
                 "parameters": [
                     {
-                        "name": "user",
-                        "in": "body",
-                        "description": "User that we want to create",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
+                        "name": "username",
+                        "type": "string",
+                        "in": "formData",
+                        "required": "true"
+                    },
+                    {
+                        "name": "password",
+                        "type": "string",
+                        "in": "formData",
+                        "required": "true"
                     }
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
                 ],
                 "produces": [
                     "application/json"
                 ],
                 "responses": {
                     "200": {
-                        "description": "New user is created",
+                        "description": "Obtuvo con éxito los usuarios",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hubo un error en la solicitud",
                         "schema": {
                             "$ref": "#/definitions/User"
                         }
-                    }
-                }
-            },
-            "get": {
-                "tags": [
-                    "Users"
-                ],
-                "summary": "Get all users in system",
-                "responses": {
-                    "200": {
-                        "description": "OK",
+                    },
+                    "500": {
+                        "description": "Hubo un error en la solicitud",
                         "schema": {
-                            "$ref": "#/definitions/Users"
+                            "$ref": "#/definitions/User"
                         }
                     }
                 }
             }
         },
-        "/users/{userId}": {
-            "parameters": [
-                {
-                    "name": "userId",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of user that we want to find",
-                    "type": "string"
-                }
-            ],
-            "get": {
+        "/Sesion/logout": {
+            "post": {
                 "tags": [
-                    "Users"
+                    "Sesiones"
                 ],
-                "summary": "Get user with given ID",
-                "responses": {
-                    "200": {
-                        "description": "User is found",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "summary": "Delete user with given ID",
-                "tags": [
-                    "Users"
+                "description": "Obtiene todos los clientes (Sin la agencia ni agentes)",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
                 ],
                 "responses": {
                     "200": {
-                        "description": "User is deleted",
+                        "description": "Obtuvo con éxito los usuarios",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hubo un error en la solicitud",
                         "schema": {
                             "$ref": "#/definitions/User"
                         }
-                    }
-                }
-            },
-            "put": {
-                "summary": "Update user with give ID",
-                "tags": [
-                    "Users"
-                ],
-                "parameters": [
-                    {
-                        "name": "user",
-                        "in": "body",
-                        "description": "User with new values of properties",
-                        "schema": {
-                            "$ref": "#/definitions/User"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "User is updated",
+                    },
+                    "500": {
+                        "description": "Hubo un error en la solicitud",
                         "schema": {
                             "$ref": "#/definitions/User"
                         }
@@ -172,60 +170,705 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Clientes"
+                ],
+                "description": "Agrega un cliente nuevo",
+                "parameters": [
+                    {
+                        "name": "nombre",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "apellidoP",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "apellidoM",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "rfc",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "telefono",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "correo",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "estado",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "cp",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "domicilio",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "agencia",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "agente",
+                        "in": "formData",
+                        "type": "string"
+                    }
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtuvo con éxito los usuarios",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "500": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/Clientes/{id}": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "description": "Obtiene un cliente por su ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtuvo con éxito los usuarios",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "500": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Clientes"
+                ],
+                "description": "Modifica ",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "nombre",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "apellidoP",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "apellidoM",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "rfc",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "telefono",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "correo",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "estado",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "cp",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "domicilio",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "agencia",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "agente",
+                        "in": "formData",
+                        "type": "string"
+                    }
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtuvo con éxito los usuarios",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "500": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Clientes"
+                ],
+                "description": "Elimina lógicamente un cliente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtuvo con éxito los usuarios",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "500": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/Agentes": {
+            "get": {
+                "tags": [
+                    "Agentes"
+                ],
+                "description": "Obtiene todos los clientes (Sin la agencia ni agentes)",
+                "parameters": [
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtuvo con éxito los usuarios",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "500": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Agentes"
+                ],
+                "description": "Agrega un cliente nuevo",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "nombre",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "apellidoP",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "apellidoM",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "rfc",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "telefono",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "correo",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "estado",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "ciudad",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "cp",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "number"
+                    },
+                    {
+                        "name": "domicilio",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "rol",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "agencia",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "agente",
+                        "in": "formData",
+                        "type": "string"
+                    }
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtuvo con éxito los usuarios",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "500": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/Agentes/{id}": {
+            "get": {
+                "tags": [
+                    "Agentes"
+                ],
+                "description": "Obtiene un cliente por su ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtuvo con éxito los usuarios",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "500": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Agentes"
+                ],
+                "description": "Modifica ",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "nombre",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "apellidoP",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "apellidoM",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "rfc",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "telefono",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "correo",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "estado",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "cp",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "int"
+                    },
+                    {
+                        "name": "domicilio",
+                        "in": "formData",
+                        "required": "true",
+                        "type": "string"
+                    },
+                    {
+                        "name": "agencia",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "agente",
+                        "in": "formData",
+                        "type": "string"
+                    }
+                ],
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtuvo con éxito los usuarios",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "500": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Agentes"
+                ],
+                "description": "Elimina lógicamente un cliente",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": "true",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Obtuvo con éxito los usuarios",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Cliente"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "500": {
+                        "description": "Hubo un error en la solicitud",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
             }
         }
     },
     "definitions": {
-        "User": {
-            "required": [
-                "email",
-                "_id"
-            ],
-            "properties": {
-                "_id": {
-                    "type": "string",
-                    "uniqueItems": true
-                },
-                "email": {
-                    "type": "string",
-                    "uniqueItems": true
-                },
-                "lastName": {
-                    "type": "string"
-                },
-                "firstName": {
-                    "type": "string"
-                }
-            }
-        },
-        "Users": {
-            "type": "array",
-            "$ref": "#/definitions/User"
-        },
-        "Base": {
-            "type": "object",
-            "properties": {
-                "status": {
-                    "type": "boolean"
-                },
-                "data": {
-                    "type": "object"
-                }
-            }
-        },
-        "Cliente": {
-            "required": [
-                "_id",
-                "apellidoP",
-                "apellidoM",
-                "rfc",
-                "telefono",
-                "correo",
-                "estado",
-                "cp",
-                "domicilio",
-                "agencia"
-            ],
+      "Cliente": {
             "properties": {
                 "_id": {
                     "type": "string"
