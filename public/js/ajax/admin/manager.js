@@ -106,9 +106,7 @@ $(document).ready(function(){
         var id = $(this).attr("data-id"),
             url = "/api/Agentes/" + id;
         
-        var username  = $("#username"),
-            password = $("#password"),
-            nombre   = $("#nombre"),
+        var nombre   = $("#nombre"),
             apellidoP = $("#apellido-p"),
             apellidoM = $("#apellido-m"),
             telefono = $("#telefono"),
@@ -133,17 +131,6 @@ $(document).ready(function(){
 
                     var agencias;
 
-                    $.ajax({
-                        url: "/api/Agencias",
-                        method: "GET",
-                        dataType: "json",
-                        success: function(data){
-                            //agencias.data=
-                        }
-                    });
-
-                    username.val(manager.username);
-                    password.val(manager.password);
                     nombre.val(manager.nombre);
                     apellidoP.val(manager.apellidoP);
                     apellidoM.val(manager.apellidoM);
@@ -151,6 +138,7 @@ $(document).ready(function(){
                     correo.val(manager.correo);
                     estado.val(manager.estado);
                     ciudad.val(manager.ciudad);
+                    domicilio.val(manager.domicilio);
                     cp.val(manager.cp);
                     domicilio.val(manager.domicilio);
 
