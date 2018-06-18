@@ -106,7 +106,7 @@ $(() => {
             let modelosPorCategoria = agenciaSeleccionada.filter( modelo => modelo.categoria == categoriaSeleccionada && modelo.variantes.length > 0);
 
             $.each(modelosPorCategoria, (index, modelo) => {
-                cb_modelos.append($("<option>").val(modelo.modelo).html(modelo.modelo));
+                cb_modelos.append($("<option>").val(modelo.nombre).html(modelo.nombre));
             });
             cb_modelos.selectpicker("refresh")
             .selectpicker('setStyle', 'btn-danger', "remove")
@@ -117,7 +117,7 @@ $(() => {
 
     cb_modelos.change(function() {
         if (cb_modelos.val() != "nope") {
-            modeloSeleccionado = agenciaSeleccionada.filter(modelo => modelo.modelo == cb_modelos.val())[0];
+            modeloSeleccionado = agenciaSeleccionada.filter(modelo => modelo.nombre == cb_modelos.val())[0];
             cb_agencias
             .selectpicker('setStyle', 'btn-danger')
             .selectpicker('setStyle', 'btn-secondary', "remove")
@@ -134,7 +134,7 @@ $(() => {
             bt_agregar.attr("disabled", true).switchClass("btn-secondary", "btn-light", 200, "swing");
 
             $.each(modeloSeleccionado.variantes, (index, variante) => {
-                cb_variantes.append($("<option>").val(variante.variante).html(variante.variante));
+                cb_variantes.append($("<option>").val(variante.nombre).html(variante.nombre));
             });
             cb_variantes.selectpicker("refresh")
             .selectpicker('setStyle', 'btn-danger', "remove")
@@ -145,7 +145,7 @@ $(() => {
 
     cb_variantes.change(function() {
         if (cb_variantes.val() != "nope") {
-            varianteSeleccionada = modeloSeleccionado.variantes.filter(variante => variante.variante == cb_variantes.val())[0];
+            varianteSeleccionada = modeloSeleccionado.variantes.filter(variante => variante.nombre == cb_variantes.val())[0];
             cb_agencias
             .selectpicker('setStyle', 'btn-danger')
             .selectpicker('setStyle', 'btn-secondary', "remove")
@@ -184,10 +184,10 @@ $(() => {
         let bt_quitar = $("<a>").attr("href", "#").css("margin-left", "10px").addClass("badge").addClass("badge-danger");
         cellModelo.append($("<div>").css("display", "inline-block")
         .append($("<div>")
-            .append($("<span>").html(modeloSeleccionado.modelo).css("display", "inline"))
+            .append($("<span>").html(modeloSeleccionado.nombre).css("display", "inline"))
             .append(bt_quitar)
         )
-        .append($("<span>").html(varianteSeleccionada.variante).css("display", "block")));
+        .append($("<span>").html(varianteSeleccionada.nombre).css("display", "block")));
 
         cellCategoria.html(modeloSeleccionado.categoria);
 

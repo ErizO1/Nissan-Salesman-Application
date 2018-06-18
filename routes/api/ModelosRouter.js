@@ -109,7 +109,7 @@ router.post("/:id/Variantes", (req, res) => {
 });
 
 // Crea una variante en un modelo
-router.put("/:id/Variantes", (req, res) => {
+router.put("/Variantes/:id", (req, res) => {
     modelosController.variantes_put(req.params.id, req.body)
     .then(
         (clientes) => {

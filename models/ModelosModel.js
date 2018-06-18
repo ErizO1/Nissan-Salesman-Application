@@ -108,6 +108,7 @@ ModelosSchema.statics.obtenerComparadorExt = function(callback) {
     return this.find({"meta.activo": true}).select({
         _id: false,
         nombre: true,
+        categoria: true,
         "dimensiones.alto": true,
         "dimensiones.ancho": true,
         "dimensiones.largo": true,

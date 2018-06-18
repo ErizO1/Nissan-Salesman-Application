@@ -25,6 +25,7 @@ let vehiculosRouter = require("./routes/api/VehiculosRouter");
 let ventasRouter = require("./routes/api/VentasRouter");
 let comparadorExtRouter = require("./routes/api/ComapradorExtRouter");
 let estadosRouter = require("./routes/api/EstadosRouter");
+let rolesRouter = require("./routes/api/RolesRouter");
 let vistasRouter = require("./routes/index");
 
 //=======================App setup===============================
@@ -72,6 +73,7 @@ app.use("/api/Modelos", sessionManager.needLoginAPI, modelosRouter);
 app.use("/api/Vehiculos", sessionManager.needLoginAPI, vehiculosRouter);
 app.use("/api/Ventas", sessionManager.needLoginAPI, ventasRouter);
 app.use("/api/Estados", sessionManager.needLoginAPI, estadosRouter);
+app.use("/api/Roles", sessionManager.needLoginAPI, rolesRouter);
 app.use("/api/ComparadorExt", cors(), comparadorExtRouter);
 // app.use("/api/Modelos/Variantes", sessionManager.needLoginAPI, variantesRouter);
 // app.use("/api/Clientes", clientesRouter);
