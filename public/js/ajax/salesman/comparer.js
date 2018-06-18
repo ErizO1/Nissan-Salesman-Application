@@ -40,13 +40,13 @@ $(() => {
     tRow_Traccion = $("#tRow_Tracción");
     tRow_Precio = $("#tRow_Precio");
 
-    $.get("/comparerExt", (result) => {
+    $.get("/api/ComparadorExt", (result) => {
         agencias["Nissan"] = result;
         cb_agencias.prepend($("<option>").val("Nissan").html("Nissan")).selectpicker("refresh");
         cb_agencias.val("Nissan").trigger("change");
     });
 
-    $.get("http://andreaml.ddns.net/volkswagen/modelos/publico", (result) => {
+    $.get("http://infomatika.ddns.net/volkswagen/modelos/publico", (result) => {
         $.each(result, (index, modelo) => {
             modelo.categoria = "Generico";
         });

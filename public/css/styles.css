@@ -2089,6 +2089,7 @@ a, a:hover {
 }
 
 .table-filter__btn {
+  display: inline;
   background: #CD0041;
   border: none;
   color: #fff;
@@ -2096,6 +2097,7 @@ a, a:hover {
   padding: 10px 50px;
   font-size: 14px;
   transition: all .3s ease;
+  justify-content: right;
 }
 
 .table-filter__btn:hover {

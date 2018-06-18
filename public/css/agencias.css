@@ -1,0 +1,21 @@
+.detalles-container {
+    padding: 15px;
+    box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+
+.detalles-header {
+    border-bottom: 1px solid #DDD
+}
+
+.detalles-header-box-der {
+    display: inline;
+    height: 100%;
+    float: right;
+}
+
+.detalles-header-box-izq {
+    display: inline;
+    height: 100%;
+    float: left;
+}

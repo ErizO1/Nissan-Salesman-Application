@@ -24,10 +24,10 @@ $(() => {
                     });
                     document.location.href = "/inicio";
                 },
-                fail: (err) => {
+                error: (err) => {
                     document.location.href = "/inicio";
                     console.log(err);
-                    alert("Error, wacha la consola");
+                    alert("");
                 }
             })
         }

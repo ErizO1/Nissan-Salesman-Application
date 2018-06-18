@@ -1,5 +1,6 @@
+var tabla;
 $(document).ready(function(){
-
+    tabla = new Tabla();
     refreshAgencies();
     //fillSelectStates();
 
@@ -13,7 +14,21 @@ $(document).ready(function(){
         var result = "";
 
         var agencias = agencies.data;
-
+        $("#table").html("").append(tabla.getTable());
+        tabla.setClass("table", "table");
+        tabla.setClass("thead", "table__head");
+        tabla.setClass("tbody", "table__body");
+        tabla.setClass("th", "table__th");
+        tabla.setClass("tr", "table__row-td");
+        tabla.setClass("td", "table__td");
+        tabla.setHeader(["NOMBRE", "MANAGER", "asdasd"]);
+        tabla.appendRow(["asdasd", "asdasd", "asdasd"]);
+        tabla.appendRow(["asdasd", "asdasd", "asdasd"]);
+        tabla.appendRow(["asdasd", "asdasd", "asdasd"]);
+        tabla.appendRow(["asdasd", "asdasd", "asdasd"]);
+        tabla.appendRow(["asdasd", "asdasd", "asdasd"]);
+        tabla.appendRow(["asdasd", "asdasd", "asdasd"]);
+        tabla.appendRow(["asdasd", "asdasd", "asdasd"]);
         console.log(agencias);
     
         $.each(agencias, function(index, agency){

@@ -34,7 +34,7 @@ router.get("/modelo/:nombre/:id", sessionManager.needLogin, function(req, res){
 });
 
 router.get("/comparador", sessionManager.needLogin, function(req, res){
-    res.render("comparer");
+    res.render("vendedor/comparador");
 });
 
 //Global
